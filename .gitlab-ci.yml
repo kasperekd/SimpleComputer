@@ -15,11 +15,11 @@
 # https://docs.gitlab.com/ee/development/cicd/templates.html
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
-image: registry.csc.sibsitis.ru/ci/git-clang-format:latest
+image: registry.csc.sibsutis.ru/ci/git-clang-format:latest
 stages:          # List of stages for jobs, and their order of execution
+  - check-format
   - build
   - test
-  - deploy
 
 check-format:
     stage: check-format
