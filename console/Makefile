@@ -1,11 +1,16 @@
 CC = gcc
 CFLAGS = -Wall
-TARGET = test
 
-all: $(TARGET)
+all: main
 
-$(TARGET): $(TARGET).o
-	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).o
+main: main.o hello.o
+	$(CC) $(CFLAGS) -o main main.o hello.o
 
-$(TARGET).o: $(TARGET).c
-	$(CC) $(CFLAGS) -c $(TARGET).c
+main.o: main.c hello.h
+	$(CC) $(CFLAGS) -c main.c
+
+hello.o: hello.c hello.h
+	$(CC) $(CFLAGS) -c hello.c
+
+clean:
+	rm -f *.o main
