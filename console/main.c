@@ -1,7 +1,8 @@
 #include "hello.h"
 
-int main()
+int
+main ()
 {
-	hello();
-	return 1;
+  hello ();
+  return 1;
 }
