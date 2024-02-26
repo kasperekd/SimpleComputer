@@ -1,3 +1,5 @@
 .vscode/
 /console/build
+/mySimpleComputer/build
+/mySimpleComputer/lib
 output
