@@ -1,3 +1,8 @@
+#define MEM_SIZE 128
+
+#ifdef ALLOW_MEM_ACCESS
+int MEMORY[MEM_SIZE];
+#endif
 
 int sc_memoryInit (void);
 int sc_memorySet (int address, int value);
