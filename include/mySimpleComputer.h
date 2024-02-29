@@ -1,3 +1,6 @@
+#ifndef _MYSIMPLECOMPYTER_H_
+#define _MYSIMPLECOMPYTER_H_
+
 #include <stddef.h>
 
 #define MEM_SIZE 32
@@ -9,11 +12,14 @@ int MEMORY[MEM_SIZE];
 #ifdef ALLOW_REG_ACCESS
 unsigned char FLAGS;
 static const unsigned int REG_SIZE = sizeof (FLAGS) * 8;
+int ACCUMULATOR; 
 #endif
 
 #define REG_OVERFLOW 1
 #define REG_DIVISION_BY_ZERO 2
 #define REG_MEMORY_OUT_OF_BOUNDS 3
+#define REG_IMPULSE_IGNORE 4
+#define REG_INVALID_COMMAND 5
 
 int sc_memoryInit (void);
 int sc_memorySet (int address, int value);
@@ -42,3 +48,5 @@ void printFlags (void);
 void printDecodedCommand (int value);
 void printAccumulator (void);
 void printCounters (void);
+
+#endif

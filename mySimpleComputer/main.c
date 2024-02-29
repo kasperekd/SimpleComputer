@@ -19,6 +19,9 @@ int main()
     //     printf("%d ",cell);
     // }
 
+    long *a;
+    sc_accumulatorGet(&a);
+
     //printf("%d\n", REG_SIZE);
     //sc_memorySave("mem");
 

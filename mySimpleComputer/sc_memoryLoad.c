@@ -1,5 +1,5 @@
 #define ALLOW_MEM_ACCESS
-#include "mySimpleComputer.h"
+#include "../include/mySimpleComputer.h"
 #include <stdio.h>
 
 int sc_memoryLoad(char *filename) 

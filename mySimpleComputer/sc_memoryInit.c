@@ -1,5 +1,5 @@
 #define ALLOW_MEM_ACCESS
-#include "mySimpleComputer.h"
+#include "../include/mySimpleComputer.h"
 
 int sc_memoryInit(void)
 {
