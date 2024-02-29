@@ -2,4 +2,6 @@
 /console/build
 /mySimpleComputer/build
 /mySimpleComputer/lib
+/mySimpleComputer/mem
+/mySimpleComputer/save
 output

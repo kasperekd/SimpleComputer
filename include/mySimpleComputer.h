@@ -1,4 +1,4 @@
-#define MEM_SIZE 128
+#define MEM_SIZE 32
 
 #ifdef ALLOW_MEM_ACCESS
 int MEMORY[MEM_SIZE];
