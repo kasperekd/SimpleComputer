@@ -17,11 +17,17 @@ int ACCUMULATOR;
 int ICOUNTER;
 #endif
 
-#define REG_OVERFLOW 1
-#define REG_DIVISION_BY_ZERO 2
-#define REG_MEMORY_OUT_OF_BOUNDS 3
-#define REG_IMPULSE_IGNORE 4
-#define REG_INVALID_COMMAND 5
+#define REG_OVERFLOW 0x01
+#define REG_DIVISION_BY_ZERO 0x02
+#define REG_MEMORY_OUT_OF_BOUNDS 0x03
+#define REG_IMPULSE_IGNORE 0x04
+#define REG_INVALID_COMMAND 0x05
+
+#define COMMAND_SIZE 0x010
+#define COMMAND_SIGN_BIT 0x8000      
+#define COMMAND_COMMAND_BITS 0x7C00  
+#define COMMAND_COMMAND_SHIFT 0xA    
+#define COMMAND_OPERAND_BITS 0x03FF
 
 int sc_memoryInit (void);
 int sc_memorySet (int address, int value);

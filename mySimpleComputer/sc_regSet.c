@@ -1,19 +1,20 @@
 #define ALLOW_REG_ACCESS
 #include "../include/mySimpleComputer.h"
 
-int sc_regSet(int reg, int value) 
+int
+sc_regSet (int reg, int value)
 {
-    if (reg < 0 || reg > REG_SIZE - 1) 
+  if (reg < 0 || reg > REG_SIZE - 1)
     {
-        return -1; 
+      return -1;
     }
-    if (value == 0) 
+  if (value == 0)
     {
-        FLAGS &= ~(1 << reg); 
-    } 
-    else 
-    {
-        FLAGS |= (1 << reg); 
+      FLAGS &= ~(1 << reg);
     }
-    return 0;
+  else
+    {
+      FLAGS |= (1 << reg);
+    }
+  return 0;
 }

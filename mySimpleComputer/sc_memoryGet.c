@@ -1,12 +1,13 @@
 #define ALLOW_MEM_ACCESS
 #include "../include/mySimpleComputer.h"
 
-int sc_memoryGet(int address, int * value)
+int
+sc_memoryGet (int address, int *value)
 {
-    if (address > MEM_SIZE - 1 || MEM_SIZE < 0) 
+  if (address > MEM_SIZE - 1 || MEM_SIZE < 0)
     {
-        return -1;
+      return -1;
     }
-    *value = MEMORY[address]; 
-    return 0;
+  *value = MEMORY[address];
+  return 0;
 }

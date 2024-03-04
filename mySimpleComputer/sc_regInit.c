@@ -1,8 +1,9 @@
 #define ALLOW_REG_ACCESS
 #include "../include/mySimpleComputer.h"
 
-int sc_regInit (void)
+int
+sc_regInit (void)
 {
-    FLAGS &= 0;
-    return 0;
+  FLAGS &= 0;
+  return 0;
 }

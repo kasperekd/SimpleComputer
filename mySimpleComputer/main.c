@@ -1,30 +1,31 @@
 #include "../include/mySimpleComputer.h"
 #include <stdio.h>
 
-int main()
+int
+main ()
 {
-    sc_memoryInit();    
-    sc_regInit();
-    sc_icounterInit();
+  sc_memoryInit ();
+  sc_regInit ();
+  sc_icounterInit ();
 
-    sc_memoryLoad("mem");
+  sc_memoryLoad ("mem");
 
-    int cell;
-    for (int i = 0; i < MEM_SIZE; i++)
+  int cell;
+  for (int i = 0; i < MEM_SIZE; i++)
     {
-        if (i % 8 == 0)
+      if (i % 8 == 0)
         {
-            printf("\n");
+          printf ("\n");
         }
-        sc_memoryGet(i, &cell);
-        printf("%d ",cell);
+      sc_memoryGet (i, &cell);
+      printf ("%d ", cell);
     }
 
-    sc_accumulatorSet(99999);
+  sc_accumulatorSet (99999);
 
-    int a;
-    int status = sc_accumulatorGet(&a);
-    printf("status: %d", status);
-    printf("ACCUMULATOR %d", a);
-    return 0;
+  int a;
+  int status = sc_accumulatorGet (&a);
+  printf ("status: %d", status);
+  printf ("ACCUMULATOR %d", a);
+  return 0;
 }
