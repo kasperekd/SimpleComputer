@@ -1,12 +1,12 @@
-#include "../include/mySimpleComputer.h"
 #include "sc_print.h"
+#include "../include/mySimpleComputer.h"
 
 void
 printCell (int address)
 {
   int value;
   sc_memoryGet (address, &value);
-  printDecodedCommand (value); 
+  printDecodedCommand (value);
 }
 
 void
@@ -24,15 +24,15 @@ printFlags ()
 void
 printDecodedCommand (int value)
 {
-  printf ("Decimal: %d\n", value);
-  printf ("Octal: %o\n", value);
-  printf ("Hexadecimal: %X\n", value);
-  printf ("Binary: ");
+  printf ("dec: %d | ", value);
+  printf ("oct: %o | ", value);
+  printf ("hex: %X | ", value);
+  printf ("bin: ");
   for (int i = 15; i >= 0; i--)
     {
       printf ("%d", (value >> i) & 1);
     }
-  printf ("\n");
+  //printf ("");
 }
 
 void
