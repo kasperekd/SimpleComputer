@@ -1,5 +1,5 @@
 #include "../include/mySimpleComputer.h"
-#include <stdio.h>
+#include "sc_print.h"
 
 int
 main ()
