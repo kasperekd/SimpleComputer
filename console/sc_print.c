@@ -24,9 +24,9 @@ printFlags ()
 void
 printDecodedCommand (int value)
 {
-  printf ("dec: %d | ", value);
-  printf ("oct: %o | ", value);
-  printf ("hex: %X | ", value);
+  printf ("dec: %d ", value);
+  printf ("oct: %o ", value);
+  printf ("hex: %X ", value);
   printf ("bin: ");
   for (int i = 15; i >= 0; i--)
     {
