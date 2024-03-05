@@ -32,7 +32,6 @@ printDecodedCommand (int value)
     {
       printf ("%d", (value >> i) & 1);
     }
-// printf ("");
 }
 
 void

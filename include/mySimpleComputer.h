@@ -12,7 +12,7 @@ int MEMORY[MEM_SIZE];
 #ifdef ALLOW_REG_ACCESS
 unsigned int FLAGS;
 static const unsigned int REG_SIZE = sizeof (FLAGS) * 8;
-int ACCUMULATOR; 
+int ACCUMULATOR;
 int ICOUNTER;
 #endif
 
@@ -24,9 +24,9 @@ int ICOUNTER;
 #define REG_INVALID_COMMAND 0x05
 
 #define COMMAND_SIZE 0x010
-#define COMMAND_SIGN_BIT 0x8000      
-#define COMMAND_COMMAND_BITS 0x7C00  
-#define COMMAND_COMMAND_SHIFT 0xA    
+#define COMMAND_SIGN_BIT 0x8000
+#define COMMAND_COMMAND_BITS 0x7C00
+#define COMMAND_COMMAND_SHIFT 0xA
 #define COMMAND_OPERAND_BITS 0x03FF
 
 int sc_memoryInit (void);
