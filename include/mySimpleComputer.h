@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _MYSIMPLECOMPYTER_H_
 #define _MYSIMPLECOMPYTER_H_
 
