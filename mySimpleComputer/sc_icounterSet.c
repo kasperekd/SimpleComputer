@@ -4,7 +4,7 @@
 int
 sc_icounterSet (int value)
 {
-  if (value < -2147483648 || value > 2147483647)
+  if (value < 0x0 || value > 0xffff)
     {
       return -1;
     }

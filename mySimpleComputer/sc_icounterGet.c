@@ -4,7 +4,7 @@
 int
 sc_icounterGet (int *value)
 {
-  if (!(*value <= 2147483647 && *value >= -2147483647))
+  if (!value)
     {
       return -1;
     }

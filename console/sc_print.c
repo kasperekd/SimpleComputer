@@ -15,24 +15,24 @@ printFlags ()
   int flags;
   if (sc_regGet (0, &flags) == 0)
     {
-      printf ("Flags: %c%c%c\n", (flags & REG_OVERFLOW) ? 'O' : '_',
-              (flags & REG_DIVISION_BY_ZERO) ? 'Z' : '_',
-              (flags & REG_MEMORY_OUT_OF_BOUNDS) ? 'M' : '_');
+      printf ("Flags: %c%c%c\n", (flags & (1 << REG_OVERFLOW)) ? 'O' : '_',
+              (flags & (1 << REG_DIVISION_BY_ZERO)) ? 'Z' : '_',
+              (flags & (1 << REG_MEMORY_OUT_OF_BOUNDS)) ? 'M' : '_');
     }
 }
 
 void
 printDecodedCommand (int value)
 {
-  printf ("dec: %d ", value);
-  printf ("oct: %o ", value);
-  printf ("hex: %X ", value);
-  printf ("bin: ");
+  printf ("DEC: %d ", value);
+  printf ("OCT: %o ", value);
+  printf ("HEX: %X ", value);
+  printf ("BIN: ");
   for (int i = 15; i >= 0; i--)
     {
       printf ("%d", (value >> i) & 1);
     }
-  //printf ("");
+  // printf ("");
 }
 
 void

@@ -10,12 +10,12 @@ int MEMORY[MEM_SIZE];
 #endif
 
 #ifdef ALLOW_REG_ACCESS
-unsigned char FLAGS;
+unsigned int FLAGS;
 static const unsigned int REG_SIZE = sizeof (FLAGS) * 8;
-
 int ACCUMULATOR; 
 int ICOUNTER;
 #endif
+
 
 #define REG_OVERFLOW 0x01
 #define REG_DIVISION_BY_ZERO 0x02
