@@ -1,6 +1,8 @@
 #define ALLOW_MEM_ACCESS
 #include "../include/mySimpleComputer.h"
 
+int MEMORY[MEM_SIZE];
+
 int
 sc_memoryInit (void)
 {

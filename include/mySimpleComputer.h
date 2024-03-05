@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _MYSIMPLECOMPYTER_H_
 #define _MYSIMPLECOMPYTER_H_
 
@@ -6,14 +7,14 @@
 #define MEM_SIZE 32
 
 #ifdef ALLOW_MEM_ACCESS
-int MEMORY[MEM_SIZE];
+extern int MEMORY[MEM_SIZE];
 #endif
 
 #ifdef ALLOW_REG_ACCESS
-unsigned int FLAGS;
-static const unsigned int REG_SIZE = sizeof (FLAGS) * 8;
-int ACCUMULATOR;
-int ICOUNTER;
+extern unsigned int FLAGS;
+extern const unsigned int REG_SIZE;
+extern int ACCUMULATOR;
+extern int ICOUNTER;
 #endif
 
 #define REG_OVERFLOW 0x01
