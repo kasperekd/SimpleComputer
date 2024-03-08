@@ -3,9 +3,10 @@
 void
 printDecodedCommand (int value)
 {
-  printf ("DEC: %d ", value);
-  printf ("OCT: %o ", value);
-  printf ("HEX: %X ", value);
+  mt_gotoXY (16, 2);
+  printf ("DEC: %d | ", value);
+  printf ("OCT: %o | ", value);
+  printf ("HEX: %X | ", value);
   printf ("BIN: ");
   for (int i = 15; i >= 0; i--)
     {

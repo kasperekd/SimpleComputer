@@ -4,7 +4,7 @@
 
 #include <stddef.h>
 
-#define MEM_SIZE 32
+#define MEM_SIZE 128
 
 #ifdef ALLOW_MEM_ACCESS
 extern int MEMORY[MEM_SIZE];

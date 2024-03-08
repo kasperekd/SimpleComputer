@@ -4,14 +4,14 @@ BUILD_DIR = build
 LIBS = ../mySimpleComputer/build/libmySimpleComputer.a ../myTerm/build/libmyTerm.a  
 
 SRCS = $(wildcard *.c)
-OBJS = $(patsubst %.c, $(BUILD_DIR)/%.o, $(filter-out pr01.c, $(SRCS)))
+OBJS = $(patsubst %.c, $(BUILD_DIR)/%.o, $(filter-out console.c, $(SRCS)))
 
-all: $(BUILD_DIR)/pr01
+all: $(BUILD_DIR)/console
 
-$(BUILD_DIR)/pr01: $(BUILD_DIR)/pr01.o $(OBJS) $(LIBS)
+$(BUILD_DIR)/console: $(BUILD_DIR)/console.o $(OBJS) $(LIBS)
 	$(CC) $(CFLAGS) -o $@ $^
 
-$(BUILD_DIR)/pr01.o: pr01.c | $(BUILD_DIR)
+$(BUILD_DIR)/console.o: console.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/%.o: %.c | $(BUILD_DIR)

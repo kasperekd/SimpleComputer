@@ -10,6 +10,8 @@ main ()
   sc_icounterInit ();
   sc_regInit ();
 
+  mt_clrscr();
+
   // 2
   for (int i = 0; i < MEM_SIZE; i++)
     {
@@ -18,15 +20,15 @@ main ()
 
   for (int i = 0; i < MEM_SIZE; i++)
     {
-      printf (" |%d| ", i);
-      //printCell (i);
-      if (i % 3 == 2)
-        {
-          printf ("\n");
-        }
+      printCell (i, BLACK, WHITE);
     }
-  printf ("\n\n");
 
 
+  sc_regSet (REG_OVERFLOW, 0);
+  sc_regSet (REG_DIVISION_BY_ZERO, 1);
+  sc_regSet (REG_MEMORY_OUT_OF_BOUNDS, 1);
+
+  printFlags();
+  printDecodedCommand(2);
   return 0;
 }

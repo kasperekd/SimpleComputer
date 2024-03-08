@@ -4,6 +4,7 @@ void
 printFlags ()
 {
   int flags;
+  mt_gotoXY (FLAGS_Y, FLAGS_X);
   if (sc_regGet (0, &flags) == 0)
     {
       printf ("Flags: %c%c%c\n", (flags & (1 << REG_OVERFLOW)) ? 'O' : '_',
