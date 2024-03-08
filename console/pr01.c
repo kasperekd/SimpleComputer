@@ -19,7 +19,7 @@ main ()
   for (int i = 0; i < MEM_SIZE; i++)
     {
       printf (" |%d| ", i);
-      printCell (i);
+      //printCell (i);
       if (i % 3 == 2)
         {
           printf ("\n");
