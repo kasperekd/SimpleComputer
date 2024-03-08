@@ -1,11 +1,11 @@
 CC = gcc
 CFLAGS = -Wall
 BUILD_DIR = build
-LIB_DIR = ../mySimpleComputer/build
+LIBS = ../mySimpleComputer/build/libmySimpleComputer.a ../myTerm/build/libmyTerm.a  
 
 all: $(BUILD_DIR)/main $(BUILD_DIR)/pr01
 
-$(BUILD_DIR)/pr01: $(BUILD_DIR)/pr01.o $(BUILD_DIR)/sc_print.o $(LIB_DIR)/libmySimpleComputer.a
+$(BUILD_DIR)/pr01: $(BUILD_DIR)/pr01.o $(BUILD_DIR)/sc_print.o $(LIBS)
 	$(CC) $(CFLAGS) -o $@ $^
 
 $(BUILD_DIR)/pr01.o: pr01.c | $(BUILD_DIR)

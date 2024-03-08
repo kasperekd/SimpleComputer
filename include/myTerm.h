@@ -1,6 +1,6 @@
 #pragma once
 #ifndef _MYTERM_H_
-#define _MYTERM_H_
+#define _MYTERM_H_ 1
 
 #include <stdio.h>
 #include <unistd.h>
