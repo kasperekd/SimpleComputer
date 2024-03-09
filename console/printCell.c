@@ -20,5 +20,4 @@ printCell (int address, enum colors fg, enum colors bg)
   printf ("+%04X", value);
 
   mt_setdefaultcolor ();
-
 }

@@ -18,6 +18,10 @@ main ()
       sc_memorySet (i, i);
     }
 
+  // printf("\n\n");
+  // printTerm(4,0);
+  // printf("\n\n");
+
   for (int i = 0; i < MEM_SIZE; i++)
     {
       printCell (i, BLACK, WHITE);
@@ -32,5 +36,6 @@ main ()
   printFlags();
   printCounters();
   printDecodedCommand(2);
+
   return 0;
 }

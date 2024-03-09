@@ -24,5 +24,6 @@ void printFlags ();
 void printDecodedCommand (int value);
 void printAccumulator ();
 void printCounters ();
+void printTerm(int address, int input);
 
 #endif
