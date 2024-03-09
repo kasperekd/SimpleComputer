@@ -22,6 +22,9 @@
 #define DEC_X 2
 #define DEC_Y 16
 
+#define MIN_T_SIZE_X FLAGS_X + 12
+#define MIN_T_SIZE_Y DEC_Y + 2
+
 void printCell (int address, enum colors fg, enum colors bg);
 void printFlags ();
 void printDecodedCommand (int value);
