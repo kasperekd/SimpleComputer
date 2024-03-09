@@ -12,7 +12,7 @@ printCell (int address, enum colors fg, enum colors bg)
   mt_setfgcolor (fg);
   mt_setbgcolor (bg);
 
-  mt_gotoXY (cell_y, cell_x);
+  mt_gotoXY (cell_x, cell_y);
 
   int value;
   sc_memoryGet(address, &value);

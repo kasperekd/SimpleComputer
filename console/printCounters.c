@@ -5,5 +5,8 @@ printCounters ()
 {
   int icounter;
   sc_icounterGet (&icounter);
-  printf ("Instruction Counter: %04X\n", icounter);
+
+  mt_gotoXY (COUNT_X, COUNT_Y);
+
+  printf ("T: %02d", icounter);
 }

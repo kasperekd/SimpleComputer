@@ -28,7 +28,9 @@ main ()
   sc_regSet (REG_DIVISION_BY_ZERO, 1);
   sc_regSet (REG_MEMORY_OUT_OF_BOUNDS, 1);
 
+  printAccumulator();
   printFlags();
+  printCounters();
   printDecodedCommand(2);
   return 0;
 }
