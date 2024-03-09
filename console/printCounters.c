@@ -8,5 +8,5 @@ printCounters ()
 
   mt_gotoXY (COUNT_X, COUNT_Y);
 
-  printf ("T: %02d", icounter);
+  printf ("T: 00 IC: +%04X", icounter);
 }
