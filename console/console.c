@@ -51,5 +51,13 @@ main ()
   printCommand ();
   printDecodedCommand (2);
 
+  for (int i = 0; i < 7; i++)
+  {
+    printTerm(i+5, 1);
+  }
+  
+  mt_gotoXY(1, 25);
+  printf("\n");
+
   return 0;
 }
