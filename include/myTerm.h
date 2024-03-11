@@ -3,9 +3,9 @@
 #define _MYTERM_H_ 1
 
 #include <stdio.h>
-#include <unistd.h>
 #include <string.h>
 #include <sys/ioctl.h>
+#include <unistd.h>
 
 enum colors
 {
