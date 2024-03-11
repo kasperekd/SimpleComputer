@@ -10,13 +10,15 @@ main ()
     }
 
   int rows, cols;
-  mt_getscreensize(&rows, &cols);
-  
+  mt_getscreensize (&rows, &cols);
+
   if (cols < MIN_T_SIZE_X || rows < MIN_T_SIZE_Y)
-  {
-    printf("\nWrong terminal size\nMinimal: Rows - %d Cols - %d\nCurrent: Rows - %d Cols - %d\n", MIN_T_SIZE_Y, MIN_T_SIZE_X,rows, cols);
-    return -1;
-  }
+    {
+      printf ("\nWrong terminal size\nMinimal: Rows - %d Cols - %d\nCurrent: "
+              "Rows - %d Cols - %d\n",
+              MIN_T_SIZE_Y, MIN_T_SIZE_X, rows, cols);
+      return -1;
+    }
 
   mt_clrscr ();
 
@@ -33,32 +35,28 @@ main ()
   for (int i = 0; i < MEM_SIZE; i++)
     {
       if (i == 10)
-      {
-        printCell (i, BLACK, WHITE);
-        continue;
-      }
+        {
+          printCell (i, BLACK, WHITE);
+          continue;
+        }
       printCell (i, WHITE, BLACK);
     }
 
-  sc_regSet (REG_OVERFLOW, 0);
-  sc_regSet (REG_DIVISION_BY_ZERO, 1);
-  sc_regSet (REG_MEMORY_OUT_OF_BOUNDS, 1);
-
-  sc_icounterSet (0xA);
+  sc_icounterSet (0x7F);
 
   printAccumulator ();
-  printFlags ();
   printCounters ();
   printCommand ();
   printDecodedCommand (2);
+  printFlags ();
 
   for (int i = 0; i < 7; i++)
-  {
-    printTerm(i+5, 1);
-  }
-  
-  mt_gotoXY(1, 25);
-  printf("\n");
+    {
+      printTerm (i + 5, 1);
+    }
+
+  mt_gotoXY (1, 23);
+  printf ("\n");
 
   return 0;
 }

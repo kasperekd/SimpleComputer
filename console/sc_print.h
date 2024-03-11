@@ -26,11 +26,8 @@
 #define IN_OUT_Y 18
 extern int IO_LINE;
 
-
 #define MIN_T_SIZE_X FLAGS_X + 12
-#define MIN_T_SIZE_Y IN_OUT_Y + 2
-
-
+#define MIN_T_SIZE_Y IN_OUT_Y + 5
 
 void printCell (int address, enum colors fg, enum colors bg);
 void printFlags ();

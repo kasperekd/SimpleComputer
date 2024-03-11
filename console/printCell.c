@@ -15,7 +15,7 @@ printCell (int address, enum colors fg, enum colors bg)
   mt_gotoXY (cell_x, cell_y);
 
   int value;
-  sc_memoryGet(address, &value);
+  sc_memoryGet (address, &value);
 
   printf ("+%04X", value);
 

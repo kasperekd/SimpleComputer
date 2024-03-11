@@ -7,6 +7,6 @@ printAccumulator ()
   sc_accumulatorGet (&accumulator);
 
   mt_gotoXY (ACC_X, ACC_Y);
-  
+
   printf ("SC: +%04x HEX %04X", accumulator, accumulator);
 }
