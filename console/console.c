@@ -30,13 +30,14 @@ main ()
       sc_memorySet (i, i);
     }
 
-  // printf("\n\n");
-  // printTerm(4,0);
-  // printf("\n\n");
-
   for (int i = 0; i < MEM_SIZE; i++)
     {
-      printCell (i, BLACK, WHITE);
+      if (i == 10)
+      {
+        printCell (i, BLACK, WHITE);
+        continue;
+      }
+      printCell (i, WHITE, BLACK);
     }
 
   sc_regSet (REG_OVERFLOW, 0);
