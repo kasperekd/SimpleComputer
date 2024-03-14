@@ -1,7 +1,7 @@
 #ifndef _PRINT_H
 #define _PRINT_H 1
-#include "../include/mySimpleComputer.h"
-#include "../include/myTerm.h"
+#include "mySimpleComputer.h"
+#include "myTerm.h"
 #include <stdio.h>
 
 #define RAM_X 1

@@ -1,4 +1,4 @@
-#include <../include/myTerm.h>
+#include "myTerm.h"
 
 int
 mt_setcursorvisible (int value)

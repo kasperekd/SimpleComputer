@@ -1,5 +1,5 @@
 #define ALLOW_REG_ACCESS
-#include "../include/mySimpleComputer.h"
+#include "mySimpleComputer.h"
 
 int
 sc_accumulatorGet (int *value)

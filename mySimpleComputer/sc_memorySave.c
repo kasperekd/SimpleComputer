@@ -1,5 +1,5 @@
 #define ALLOW_MEM_ACCESS
-#include "../include/mySimpleComputer.h"
+#include "mySimpleComputer.h"
 #include <stdio.h>
 
 int

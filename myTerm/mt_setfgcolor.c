@@ -1,4 +1,4 @@
-#include <../include/myTerm.h>
+#include "myTerm.h"
 
 int
 mt_setfgcolor (enum colors color)
