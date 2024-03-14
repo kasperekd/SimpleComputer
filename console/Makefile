@@ -1,28 +1,22 @@
 CC = gcc
 CFLAGS = -Wall
 BUILD_DIR = build
-LIB_DIR = ../mySimpleComputer/build
+LIBS = ../mySimpleComputer/build/libmySimpleComputer.a ../myTerm/build/libmyTerm.a
 INCLUDE = -I../include/
 
-all: $(BUILD_DIR)/main $(BUILD_DIR)/pr01
+SRCS = $(wildcard *.c)
+OBJS = $(patsubst %.c, $(BUILD_DIR)/%.o, $(filter-out console.c, $(SRCS)))
 
-$(BUILD_DIR)/pr01: $(BUILD_DIR)/pr01.o $(BUILD_DIR)/sc_print.o $(LIB_DIR)/libmySimpleComputer.a
+all: $(BUILD_DIR)/console
+
+$(BUILD_DIR)/console: $(BUILD_DIR)/console.o $(OBJS) $(LIBS)
 	$(CC) $(CFLAGS) -o $@ $^
 
-$(BUILD_DIR)/pr01.o: pr01.c | $(BUILD_DIR)
+$(BUILD_DIR)/console.o: console.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $(INCLUDE) $< -o $@
 
-$(BUILD_DIR)/sc_print.o: sc_print.c | $(BUILD_DIR)
+$(BUILD_DIR)/%.o: %.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $(INCLUDE) $< -o $@
-
-$(BUILD_DIR)/main: $(BUILD_DIR)/main.o $(BUILD_DIR)/hello.o
-	$(CC) $(CFLAGS) -o $@ $^
-
-$(BUILD_DIR)/main.o: main.c hello.h | $(BUILD_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/hello.o: hello.c hello.h | $(BUILD_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
