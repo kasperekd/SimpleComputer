@@ -1,5 +1,4 @@
 #include "sc_print.h"
-#include "../include/mySimpleComputer.h"
 
 void
 printCell (int address)

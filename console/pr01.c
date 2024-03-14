@@ -1,4 +1,4 @@
-#include "../include/mySimpleComputer.h"
+#include "mySimpleComputer.h"
 #include "sc_print.h"
 
 int
