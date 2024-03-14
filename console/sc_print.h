@@ -3,7 +3,6 @@
 #include "mySimpleComputer.h"
 #include "myTerm.h"
 #include <stdio.h>
-#include "mySimpleComputer.h"
 
 #define RAM_X 1
 #define RAM_Y 2
