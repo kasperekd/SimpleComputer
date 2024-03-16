@@ -6,6 +6,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 #ifndef _COLORS_
 #define _COLORS_ 1
@@ -21,6 +22,14 @@ enum colors
   WHITE,
 };
 #endif
+
+#define CKBOARD ("a")  // ▒
+#define HLINE ("q")    // ─
+#define VLINE ("x")    // │
+#define LUCORNER ("l") // ┌
+#define LDCORNER ("m") // └
+#define RDCORNER ("j") // ┘
+#define RUCORNER ("k") // ┐
 
 int bc_strlen (char *str);
 int bc_printA (char *str);

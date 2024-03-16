@@ -1,44 +1,55 @@
 #include "myBigChars.h"
+#include "myTerm.h"
 
 int
 bc_box (int x1, int y1, int x2, int y2, enum colors box_fg, enum colors box_bg,
         char *header, enum colors header_fg, enum colors header_bg)
 {
+  if (x1 < 0 || y1 < 0 || x2 < 0 || y2 < 0 || x1 > x2 || y1 > y2)
+    {
+      return -1;
+    }
+
   if (header != NULL)
     {
-      printf ("┌");
-      printf ("\033[%d;%dH", x1, y1);
-      printf ("\033[48;5;%dm\033[38;5;%dm┌", box_bg, box_fg);
+      mt_setfgcolor (box_fg);
+      mt_setbgcolor (box_bg);
+
+      mt_gotoXY (x1, y1);
+      bc_printA (LUCORNER);
+      ;
       for (int i = 1; i < y2 - 1; i++)
         {
-          printf ("─");
+          bc_printA (HLINE);
         }
-      printf ("┐\n");
+      bc_printA (RUCORNER);
 
-      printf ("\033[%d;%dH", x1 + 1, y1);
+      mt_gotoXY (x1 + 1, y1);
       for (int i = 2; i < x2 - 1; i++)
         {
-          printf ("\033[%d;%dH", x1 + i, y1);
-          printf ("\033[48;5;%dm\033[38;5;%dm│\033[m\n", box_bg, box_fg);
+          mt_gotoXY (x1, y1 + i);
+          bc_printA (VLINE);
         }
 
       for (int i = 2; i < x2 - 1; i++)
         {
-          printf ("\033[%d;%dH", x1 + i, y1 + y2);
-          printf ("\033[48;5;%dm\033[38;5;%dm│\033[m\n", box_bg, box_fg);
+          mt_gotoXY (x1 + y2, y1 + i);
+          bc_printA (VLINE);
         }
 
-      printf ("\033[%d;%dH", x1 + x2 - 1, y1);
-      printf ("\033[48;5;%dm\033[38;5;%dm└", box_bg, box_fg);
+      mt_gotoXY (x1, y1 + x2 - 1);
+      bc_printA (LDCORNER);
+
       for (int i = 1; i < y2 - 1; i++)
         {
-          printf ("─");
+          bc_printA (HLINE);
         }
-      printf ("┘\033[m\n");
+      bc_printA (RDCORNER);
 
-      printf ("\033[%d;%dH", x1, y1 + (y2 - strlen (header)) / 2);
-      printf ("\033[48;5;%dm\033[38;5;%dm%s\033[m\n", header_bg, header_fg,
-              header);
+      mt_gotoXY (y1 + (y2 - strlen (header)) / 2, x1);
+      mt_setfgcolor (header_fg);
+      mt_setbgcolor (header_bg);
+      bc_printA (header);
     }
 
   return 0;

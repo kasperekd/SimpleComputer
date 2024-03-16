@@ -61,5 +61,7 @@ main ()
   mt_gotoXY (1, 23);
   printf ("\n");
 
+  //bc_printA("a");
+
   return 0;
 }
