@@ -1,6 +1,7 @@
 .vscode/
 /console/build
 /mySimpleComputer/build
+/myBigChars/build
 /mySimpleComputer/lib
 /mySimpleComputer/mem
 /mySimpleComputer/save
