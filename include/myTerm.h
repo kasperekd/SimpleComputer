@@ -7,6 +7,8 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 
+#ifndef _COLORS_
+#define _COLORS_ 1
 enum colors
 {
   BLACK = 0,
@@ -18,6 +20,7 @@ enum colors
   CYAN,
   WHITE,
 };
+#endif
 
 int mt_clrscr (void);
 int mt_gotoXY (int x, int y);

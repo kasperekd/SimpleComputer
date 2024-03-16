@@ -4,7 +4,11 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <stdio.h>
+#include <string.h>
 
+#ifndef _COLORS_
+#define _COLORS_ 1
 enum colors
 {
   BLACK = 0,
@@ -16,6 +20,7 @@ enum colors
   CYAN,
   WHITE,
 };
+#endif
 
 int bc_strlen (char *str);
 int bc_printA (char *str);

@@ -1,5 +1,6 @@
 #include "mySimpleComputer.h"
 #include "sc_print.h"
+#include "myBigChars.h"
 
 int
 main ()
@@ -26,6 +27,8 @@ main ()
   sc_accumulatorInit ();
   sc_icounterInit ();
   sc_regInit ();
+
+  bc_box(0,0,16,62, WHITE, BLACK,"MEMORY",RED,BLACK);
 
   for (int i = 0; i < MEM_SIZE; i++)
     {
