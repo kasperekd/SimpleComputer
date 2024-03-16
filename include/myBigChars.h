@@ -2,8 +2,8 @@
 #ifndef _MYBIGCHAR_H_
 #define _MYBIGCHAR_H_ 1
 
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
