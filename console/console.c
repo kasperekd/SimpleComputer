@@ -3,7 +3,7 @@
 #include "sc_print.h"
 
 int
-main ()
+main (int argc, char *argv[])
 {
   if (!(isatty (fileno (stdout)) || isatty (fileno (stdin))))
     {
@@ -22,6 +22,26 @@ main ()
     }
 
   mt_clrscr ();
+
+  // READING FONTS
+  char *filename;
+    if (argc == 2) {
+        filename = argv[1];
+    } else {
+        filename = "font.dat";
+    }
+  FILE *file = fopen (filename, "rb");
+  int font[36];
+  if (file != NULL)
+    {
+      fread (font, sizeof (int), sizeof (font) / sizeof (int), file);
+      fclose (file);
+    }
+  else
+    {
+      printf ("Error opening file.\n");
+      return -1;
+    }
 
   sc_memoryInit ();
   sc_accumulatorInit ();
