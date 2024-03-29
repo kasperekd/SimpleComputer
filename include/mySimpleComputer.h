@@ -25,9 +25,9 @@ extern int ICOUNTER;
 
 #define COMMAND_SIZE 0x010
 #define COMMAND_SIGN_BIT 0x8000
-#define COMMAND_COMMAND_BITS 0x7C00
-#define COMMAND_COMMAND_SHIFT 0xA
-#define COMMAND_OPERAND_BITS 0x03FF
+#define COMMAND_COMMAND_BITS 0xFF00
+#define COMMAND_COMMAND_SHIFT 0x8
+#define COMMAND_OPERAND_BITS 0x00FF
 
 int sc_memoryInit (void);
 int sc_memorySet (int address, int value);

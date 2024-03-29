@@ -1,4 +1,3 @@
-#include "myBigChars.h"
 #include "mySimpleComputer.h"
 #include "sc_print.h"
 
@@ -25,16 +24,19 @@ main (int argc, char *argv[])
 
   // READING FONTS
   char *filename;
-    if (argc == 2) {
-        filename = argv[1];
-    } else {
-        filename = "font.dat";
+  if (argc == 2)
+    {
+      filename = argv[1];
+    }
+  else
+    {
+      filename = "font.dat";
     }
   FILE *file = fopen (filename, "rb");
-  int font[36];
+  int fontData[36];
   if (file != NULL)
     {
-      fread (font, sizeof (int), sizeof (font) / sizeof (int), file);
+      fread (fontData, sizeof (int), sizeof (fontData) / sizeof (int), file);
       fclose (file);
     }
   else
@@ -43,23 +45,37 @@ main (int argc, char *argv[])
       return -1;
     }
 
+  for (int i = 0; i < 18; ++i)
+    {
+      font[i] = &fontData[i * 2];
+    }
+
   sc_memoryInit ();
   sc_accumulatorInit ();
   sc_icounterInit ();
   sc_regInit ();
 
-  bc_box (0, 0, 16, 62, WHITE, BLACK, "MEMORY", RED, BLACK);
+  //BOXES
+  bc_box (0, 0, 62, 16, WHITE, BLACK, "MEMORY", RED, BLACK);
+  bc_box (0, 16, 62, 3, WHITE, BLACK, "DECODED", RED, BLACK);
+  bc_box (63, 0, 22, 4, WHITE, BLACK, "ACCUMMULATOR", RED, BLACK);
+  bc_box (86, 0, 21, 4, WHITE, BLACK, "FLAGS", RED, BLACK);
+  bc_box (63, 4, 22, 3, WHITE, BLACK, "COUNTER", RED, BLACK);
 
   for (int i = 0; i < MEM_SIZE; i++)
     {
-      sc_memorySet (i, i);
+      sc_memorySet (i, i + 30000);
     }
 
   for (int i = 0; i < MEM_SIZE; i++)
     {
-      if (i == 10)
+      if (i == 120)
         {
           printCell (i, BLACK, WHITE);
+          int val;
+          sc_memoryGet (i, &val);
+          printBigCell (val);
+          printDecodedCommand (val);
           continue;
         }
       printCell (i, WHITE, BLACK);
@@ -70,7 +86,6 @@ main (int argc, char *argv[])
   printAccumulator ();
   printCounters ();
   printCommand ();
-  printDecodedCommand (2);
   printFlags ();
 
   for (int i = 0; i < 7; i++)
@@ -80,8 +95,6 @@ main (int argc, char *argv[])
 
   mt_gotoXY (1, 23);
   printf ("\n");
-
-  // bc_printA("a");
 
   return 0;
 }

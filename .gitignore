@@ -1,6 +1,6 @@
 .vscode/
 /console/build
-/console/font.dat
+*font.dat
 /mySimpleComputer/build
 /myBigChars/build
 /mySimpleComputer/lib

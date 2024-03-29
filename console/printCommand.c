@@ -22,6 +22,6 @@ printCommand ()
     {
       printf ("%c ", ((sign) ? '-' : '+'));
       printf ("%02X : ", command);
-      printf ("%X", operand);
+      printf ("%02X", operand);
     }
 }
