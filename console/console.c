@@ -1,5 +1,6 @@
 #include "mySimpleComputer.h"
 #include "sc_print.h"
+#include "myReadkey.h"
 
 int
 main (int argc, char *argv[])
