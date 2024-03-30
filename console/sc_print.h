@@ -1,9 +1,9 @@
 #ifndef _PRINT_H
 #define _PRINT_H 1
-#include <stdio.h>
+#include "myBigChars.h"
 #include "mySimpleComputer.h"
 #include "myTerm.h"
-#include "myBigChars.h"
+#include <stdio.h>
 
 #define RAM_X 1
 #define RAM_Y 2
@@ -42,6 +42,6 @@ void printAccumulator ();
 void printCounters ();
 void printTerm (int address, int input);
 void printCommand ();
-void printBigCell(int val);
+void printBigCell (int val);
 
 #endif

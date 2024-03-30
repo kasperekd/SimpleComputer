@@ -15,7 +15,7 @@ printBigCell (int val)
       signIndex = 17;
     }
 
-  int absVal = abs(val);
+  int absVal = abs (val);
   int firstDigit = (absVal & 0xF000) >> 12;
   int secondDigit = (absVal & 0x0F00) >> 8;
   int thirdDigit = (absVal & 0x00F0) >> 4;

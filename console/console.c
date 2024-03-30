@@ -55,7 +55,7 @@ main (int argc, char *argv[])
   sc_icounterInit ();
   sc_regInit ();
 
-  //BOXES
+  // BOXES
   bc_box (0, 0, 62, 16, WHITE, BLACK, "MEMORY", RED, BLACK);
   bc_box (0, 16, 62, 3, WHITE, BLACK, "DECODED (format)", RED, WHITE);
   bc_box (62, 0, 24, 4, WHITE, BLACK, "ACCUMMULATOR", RED, BLACK);
