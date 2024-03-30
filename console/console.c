@@ -57,10 +57,15 @@ main (int argc, char *argv[])
 
   //BOXES
   bc_box (0, 0, 62, 16, WHITE, BLACK, "MEMORY", RED, BLACK);
-  bc_box (0, 16, 62, 3, WHITE, BLACK, "DECODED", RED, BLACK);
-  bc_box (63, 0, 22, 4, WHITE, BLACK, "ACCUMMULATOR", RED, BLACK);
-  bc_box (86, 0, 21, 4, WHITE, BLACK, "FLAGS", RED, BLACK);
-  bc_box (63, 4, 22, 3, WHITE, BLACK, "COUNTER", RED, BLACK);
+  bc_box (0, 16, 62, 3, WHITE, BLACK, "DECODED (format)", RED, WHITE);
+  bc_box (62, 0, 24, 4, WHITE, BLACK, "ACCUMMULATOR", RED, BLACK);
+  bc_box (86, 0, 24, 4, WHITE, BLACK, "FLAGS", RED, BLACK);
+  bc_box (62, 4, 24, 3, WHITE, BLACK, "COUNTER", RED, BLACK);
+  bc_box (86, 4, 24, 3, WHITE, BLACK, "COMMAND", RED, BLACK);
+  bc_box (62, 7, 48, 12, WHITE, BLACK, "EDITABLE CELL (enlarged)", RED, WHITE);
+  bc_box (0, 19, 68, 7, WHITE, BLACK, "CPU CACHE", GREEN, WHITE);
+  bc_box (68, 19, 11, 7, WHITE, BLACK, "IN--OUT", GREEN, WHITE);
+  bc_box (79, 19, 31, 7, WHITE, BLACK, "KEYS", GREEN, WHITE);
 
   for (int i = 0; i < MEM_SIZE; i++)
     {
@@ -93,7 +98,7 @@ main (int argc, char *argv[])
       printTerm (i + 5, 1);
     }
 
-  mt_gotoXY (1, 23);
+  mt_gotoXY (1, 26);
   printf ("\n");
 
   return 0;
