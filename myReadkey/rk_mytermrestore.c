@@ -1,7 +1,7 @@
 #include "myReadkey.h"
 
-int rk_mytermrestore (void)
+int
+rk_mytermrestore (void)
 {
-    
-    return 1;
+    return tcsetattr(STDIN_FILENO, TCSANOW, &new_termios);
 }

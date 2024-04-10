@@ -1,6 +1,6 @@
+#include "myReadkey.h"
 #include "mySimpleComputer.h"
 #include "sc_print.h"
-#include "myReadkey.h"
 
 int
 main (int argc, char *argv[])
@@ -70,7 +70,7 @@ main (int argc, char *argv[])
 
   for (int i = 0; i < MEM_SIZE; i++)
     {
-      sc_memorySet (i, i + 30000);
+      sc_memorySet (i, i+0xf000 );
     }
 
   for (int i = 0; i < MEM_SIZE; i++)
@@ -99,7 +99,48 @@ main (int argc, char *argv[])
       printTerm (i + 5, 1);
     }
 
-  mt_gotoXY (1, 26);
+
+  //rk_mytermsave();
+  enum keys key;
+  while (1)
+    {
+      mt_gotoXY (1, 26);
+      //printf ("                \n");
+      mt_gotoXY (1, 26);
+      if (rk_readkey (&key) == 0)
+        {
+          switch (key)
+            {
+            case KEY_UP:
+              printf ("UP");
+              continue;
+            case KEY_DOWN:
+              printf ("DOWN");
+              continue;
+            case KEY_LEFT:
+              printf ("LEFT");
+              continue;
+            case KEY_RIGHT:
+              printf ("RIGHT");
+              continue;
+            case KEY_ENTER:
+              printf ("ENTER");
+              continue;
+            case KEY_ESC:
+              printf ("ESC");
+              break;
+            default:
+              printf ("Unknown key\n");
+              break;
+            }
+        }
+        else
+        {
+          printf ("       ");
+        }
+    }
+
+  mt_gotoXY (1, 27);
   printf ("\n");
 
   return 0;

@@ -5,14 +5,17 @@ sc_commandEncode (int sign, int command, int operand, int *value)
 {
   if (sign != 0 && sign != 1)
     {
+      sc_regSet(REG_INVALID_COMMAND, 1);
       return -1;
     }
-  if (command < 0 || command >= (1 << 7))
+  if (command < 0 || command >= (1 << COMMAND_COMMAND_SHIFT))
     {
+      sc_regSet(REG_INVALID_COMMAND, 1);
       return -1;
     }
   if (operand < 0 || operand >= (1 << 10))
     {
+      sc_regSet(REG_INVALID_COMMAND, 1);
       return -1;
     }
 
@@ -24,5 +27,6 @@ sc_commandEncode (int sign, int command, int operand, int *value)
   *value |= (command << COMMAND_COMMAND_SHIFT);
   *value |= (operand & COMMAND_OPERAND_BITS);
 
+sc_regSet(REG_INVALID_COMMAND, 0);
   return 0;
 }
