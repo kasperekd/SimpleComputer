@@ -129,6 +129,27 @@ main (int argc, char *argv[])
             case KEY_ESC:
               printf ("ESC");
               break;
+            case KEY_F5:
+              printf ("F5");
+              break;
+            case KEY_F6:
+              printf ("F6");
+              break;
+            case KEY_LOAD:
+              printf ("LOAD");
+              continue;
+            case KEY_SAVE:
+              printf ("SAVE");
+              continue;
+            case KEY_RUN:
+              printf ("RUN");
+              break;
+            case KEY_STEP:
+              printf ("STEP");
+              break;
+            case KEY_RESET:
+              printf ("RESET");
+              break;
             default:
               printf ("Unknown key\n");
               break;

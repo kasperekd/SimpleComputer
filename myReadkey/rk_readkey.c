@@ -23,32 +23,56 @@ rk_readkey (enum keys *key)
       printf ("%d ", buffer[i]);
     }
   if (strcmp (buffer, "\033[A") == 0)
-    { 
+    {
       *key = KEY_UP;
     }
-    else if (strcmp (buffer, "\033[B") == 0)
-      { 
-        *key = KEY_DOWN;
-      }
+  else if (strcmp (buffer, "\033[B") == 0)
+    {
+      *key = KEY_DOWN;
+    }
+  else if (strcmp (buffer, "\033[D") == 0)
+    {
+      *key = KEY_LEFT;
+    }
+  else if (strcmp (buffer, "\033[C") == 0)
+    {
+      *key = KEY_RIGHT;
+    }
+  else if (strcmp (buffer, "\033[15~") == 0)
+    {
+      *key = KEY_F5;
+    }
+  else if (strcmp (buffer, "\033[17~") == 0)
+    {
+      *key = KEY_F6;
+    }
   else if (strcmp (buffer, "\033") == 0)
-    { 
+    {
       *key = KEY_ESC;
     }
   else if (strcmp (buffer, "\n") == 0)
     {
       *key = KEY_ENTER;
     }
-  else if (buffer[0]==27 && buffer[1]== 91 && buffer[2]== 49 && buffer[3]== 53 && buffer[4]== 126)
-    { 
-      *key = KEY_F5;
+  else if (buffer[0] == 108 && buffer[1] == 0) //l
+    {
+      *key = KEY_LOAD;
     }
-  // else if (strcmp (buffer, "\x1b[15~") == 0)
-  //   { 
-  //     *key = KEY_F5;
-  //   }
-  else if (buffer[0]==27 && buffer[1]== 91 && buffer[2]== 49 && buffer[3]== 55 && buffer[4]== 126)
-    { 
-      *key = KEY_F6;
+  else if (buffer[0] == 115 && buffer[1] == 0) //s
+    {
+      *key = KEY_SAVE;
+    }
+  else if (buffer[0] == 114 && buffer[1] == 0) //r
+    {
+      *key = KEY_RUN;
+    }
+  else if (buffer[0] == 116 && buffer[1] == 0) //t
+    {
+      *key = KEY_STEP;
+    }
+  else if (buffer[0] == 105 && buffer[1] == 0) //i
+    {
+      *key = KEY_RESET;
     }
   else
     {
