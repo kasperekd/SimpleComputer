@@ -102,23 +102,24 @@ main (int argc, char *argv[])
   // rk_mytermsave();
   enum keys key;
   short cur_cell = 0;
+
+  int columns = 10;
+  int _rows = MEM_SIZE / columns;
+  int lastRowElements = MEM_SIZE % columns;
+
+  char isEdit = 0;
+
   while (1)
     {
       mt_gotoXY (1, 26);
       if (rk_readkey (&key) == 0)
         {
-
-          int columns = 10;
-          int rows = MEM_SIZE / columns;
-          int lastRowElements = MEM_SIZE % columns;
-
           switch (key)
             {
             case KEY_UP:
-              printf ("UP     ");
               if (cur_cell - columns < 0)
                 {
-                  if (cur_cell / columns == rows - 1)
+                  if (cur_cell / columns == _rows - 1)
                     {
                       if (cur_cell % columns == 0)
                         {
@@ -141,7 +142,6 @@ main (int argc, char *argv[])
                 }
               break;
             case KEY_DOWN:
-              printf ("DOWN   ");
               if (cur_cell + columns >= MEM_SIZE)
                 {
                   cur_cell %= columns;
@@ -152,7 +152,6 @@ main (int argc, char *argv[])
                 }
               break;
             case KEY_LEFT:
-              printf ("LEFT   ");
               if (cur_cell % columns == 0)
                 {
                   if (MEM_SIZE - cur_cell == 8)
@@ -170,8 +169,6 @@ main (int argc, char *argv[])
                 }
               break;
             case KEY_RIGHT:
-              printf ("RIGHT  ");
-
               if ((cur_cell + 1) % columns == 0 || cur_cell + 1 == MEM_SIZE)
                 {
                   if (MEM_SIZE - cur_cell < 7)
@@ -189,34 +186,37 @@ main (int argc, char *argv[])
                 }
               break;
             case KEY_ENTER:
-              printf ("ENTER     %d", cur_cell);
+            mt_gotoXY (64, 17);
+            if (!isEdit)
+            {
+              isEdit = 1;
+              mt_setfgcolor (BLUE);
+              printf ("Number of the edited cell: %d", cur_cell);
+              mt_setdefaultcolor ();
+            }
+            else
+            {
+              isEdit = 0;
+              printf ("                                      ");
+            }              
               break;
             case KEY_ESC:
-              printf ("ESC    ");
               break;
             case KEY_F5:
-              printf ("F5     ");
               break;
             case KEY_F6:
-              printf ("F6     ");
               break;
             case KEY_LOAD:
-              printf ("LOAD   ");
               break;
             case KEY_SAVE:
-              printf ("SAVE   ");
               break;
             case KEY_RUN:
-              printf ("RUN    ");
               break;
             case KEY_STEP:
-              printf ("STEP   ");
               break;
             case KEY_RESET:
-              printf ("RESET  ");
               break;
             default:
-              printf ("UNKNOWN");
               break;
             }
           if (cur_cell < 0)
