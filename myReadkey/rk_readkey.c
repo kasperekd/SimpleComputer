@@ -18,10 +18,6 @@ rk_readkey (enum keys *key)
       return -1;
     }
 
-  for (int i = 0; i < 6; i++)
-    {
-      printf ("%d ", buffer[i]);
-    }
   if (strcmp (buffer, "\033[A") == 0)
     {
       *key = KEY_UP;

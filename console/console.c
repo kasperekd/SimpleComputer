@@ -70,12 +70,12 @@ main (int argc, char *argv[])
 
   for (int i = 0; i < MEM_SIZE; i++)
     {
-      sc_memorySet (i, i+0xf000 );
+      sc_memorySet (i, i + 0xf000);
     }
 
   for (int i = 0; i < MEM_SIZE; i++)
     {
-      if (i == 120)
+      if (i == 0)
         {
           printCell (i, BLACK, WHITE);
           int val;
@@ -99,63 +99,151 @@ main (int argc, char *argv[])
       printTerm (i + 5, 1);
     }
 
-
-  //rk_mytermsave();
+  // rk_mytermsave();
   enum keys key;
+  short cur_cell = 0;
   while (1)
     {
       mt_gotoXY (1, 26);
-      //printf ("                \n");
-      mt_gotoXY (1, 26);
       if (rk_readkey (&key) == 0)
         {
+
+          int columns = 10;
+          int rows = MEM_SIZE / columns;
+          int lastRowElements = MEM_SIZE % columns;
+
           switch (key)
             {
             case KEY_UP:
-              printf ("UP");
-              continue;
+              printf ("UP     ");
+              if (cur_cell - columns < 0)
+                {
+                  if (cur_cell / columns == rows - 1)
+                    {
+                      if (cur_cell % columns == 0)
+                        {
+                          cur_cell = (MEM_SIZE + 2) - lastRowElements;
+                        }
+                      else
+                        {
+                          cur_cell -= (columns - 1);
+                        }
+                    }
+                  else
+                    {
+                      cur_cell
+                          = (MEM_SIZE + 2) - (columns - (cur_cell % columns));
+                    }
+                }
+              else
+                {
+                  cur_cell -= columns;
+                }
+              break;
             case KEY_DOWN:
-              printf ("DOWN");
-              continue;
+              printf ("DOWN   ");
+              if (cur_cell + columns >= MEM_SIZE)
+                {
+                  cur_cell %= columns;
+                }
+              else
+                {
+                  cur_cell += columns;
+                }
+              break;
             case KEY_LEFT:
-              printf ("LEFT");
-              continue;
+              printf ("LEFT   ");
+              if (cur_cell % columns == 0)
+                {
+                  if (MEM_SIZE - cur_cell == 8)
+                    {
+                      cur_cell += 7;
+                    }
+                  else
+                    {
+                      cur_cell += columns - 1;
+                    }
+                }
+              else
+                {
+                  cur_cell--;
+                }
+              break;
             case KEY_RIGHT:
-              printf ("RIGHT");
-              continue;
+              printf ("RIGHT  ");
+
+              if ((cur_cell + 1) % columns == 0 || cur_cell + 1 == MEM_SIZE)
+                {
+                  if (MEM_SIZE - cur_cell < 7)
+                    {
+                      cur_cell -= 7;
+                    }
+                  else
+                    {
+                      cur_cell -= columns - 1;
+                    }
+                }
+              else
+                {
+                  cur_cell++;
+                }
+              break;
             case KEY_ENTER:
-              printf ("ENTER");
-              continue;
+              printf ("ENTER     %d", cur_cell);
+              break;
             case KEY_ESC:
-              printf ("ESC");
+              printf ("ESC    ");
               break;
             case KEY_F5:
-              printf ("F5");
+              printf ("F5     ");
               break;
             case KEY_F6:
-              printf ("F6");
+              printf ("F6     ");
               break;
             case KEY_LOAD:
-              printf ("LOAD");
-              continue;
+              printf ("LOAD   ");
+              break;
             case KEY_SAVE:
-              printf ("SAVE");
-              continue;
+              printf ("SAVE   ");
+              break;
             case KEY_RUN:
-              printf ("RUN");
+              printf ("RUN    ");
               break;
             case KEY_STEP:
-              printf ("STEP");
+              printf ("STEP   ");
               break;
             case KEY_RESET:
-              printf ("RESET");
+              printf ("RESET  ");
               break;
             default:
-              printf ("Unknown key\n");
+              printf ("UNKNOWN");
               break;
             }
+          if (cur_cell < 0)
+            cur_cell = MEM_SIZE - 1;
+          if (cur_cell >= MEM_SIZE)
+            cur_cell = 0;
+
+          for (int i = 0; i < MEM_SIZE; i++)
+            {
+              if (i == cur_cell)
+                {
+                  printCell (i, BLACK, WHITE);
+                  int val;
+                  sc_memoryGet (i, &val);
+                  printBigCell (val);
+                  printDecodedCommand (val);
+                  continue;
+                }
+              printCell (i, WHITE, BLACK);
+            }
+
+          printAccumulator ();
+          printCounters ();
+          printCommand ();
+          printFlags ();
         }
-        else
+      else
         {
           printf ("       ");
         }
