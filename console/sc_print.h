@@ -1,9 +1,10 @@
 #ifndef _PRINT_H
 #define _PRINT_H 1
+#include <stdlib.h>
+#include <stdio.h>
 #include "myBigChars.h"
 #include "mySimpleComputer.h"
 #include "myTerm.h"
-#include <stdio.h>
 
 #define RAM_X 1
 #define RAM_Y 2
