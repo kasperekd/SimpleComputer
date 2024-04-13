@@ -104,7 +104,22 @@ main (int argc, char *argv[])
   printCounters ();
   printCommand ();
   printFlags ();
+  
+  // KEYS TEXT
+  mt_gotoXY(80, 20);
+  printf("l - load  s - save  i - reset");
+  mt_gotoXY(80, 21);
+  printf("r - run   t - step");
+  mt_gotoXY(80, 22);
+  printf("ESC - exit");
+  mt_gotoXY(80, 23);
+  printf("F5 - accumulator");
+  mt_gotoXY(80, 24);
+  printf("F6 - instruction counter");
+
   drawBoxes ();
+
+
 
   for (int i = 0; i < 7; i++)
     {
