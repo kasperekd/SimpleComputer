@@ -1,6 +1,6 @@
-#include <ctype.h>
 #include "myReadkey.h"
 #include "myTerm.h"
+#include <ctype.h>
 
 int
 rk_readvalue (int *value, int timeout)
