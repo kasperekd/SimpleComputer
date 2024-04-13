@@ -8,5 +8,14 @@ printAccumulator ()
 
   mt_gotoXY (ACC_X, ACC_Y);
 
-  printf ("SC: +%04x HEX %04X", accumulator, accumulator);
+  printf ("SC: ");
+  if (accumulator >= 0)
+    {
+      printf ("+");
+    }
+  else
+    {
+      printf ("-");
+    }
+  printf ("%04x HEX: %04X", accumulator, accumulator);
 }

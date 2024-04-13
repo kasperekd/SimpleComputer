@@ -27,6 +27,5 @@ sc_commandEncode (int sign, int command, int operand, int *value)
   *value |= (command << COMMAND_COMMAND_SHIFT);
   *value |= (operand & COMMAND_OPERAND_BITS);
 
-sc_regSet(REG_INVALID_COMMAND, 0);
   return 0;
 }

@@ -78,7 +78,6 @@ main (int argc, char *argv[])
   sc_icounterInit ();
   sc_regInit ();
 
-
   for (int i = 0; i < MEM_SIZE; i++)
     {
       sc_memorySet (i, i + 0xf000);
@@ -104,22 +103,20 @@ main (int argc, char *argv[])
   printCounters ();
   printCommand ();
   printFlags ();
-  
+
   // KEYS TEXT
-  mt_gotoXY(80, 20);
-  printf("l - load  s - save  i - reset");
-  mt_gotoXY(80, 21);
-  printf("r - run   t - step");
-  mt_gotoXY(80, 22);
-  printf("ESC - exit");
-  mt_gotoXY(80, 23);
-  printf("F5 - accumulator");
-  mt_gotoXY(80, 24);
-  printf("F6 - instruction counter");
+  mt_gotoXY (80, 20);
+  printf ("l - load  s - save  i - reset");
+  mt_gotoXY (80, 21);
+  printf ("r - run   t - step");
+  mt_gotoXY (80, 22);
+  printf ("ESC - exit");
+  mt_gotoXY (80, 23);
+  printf ("F5 - accumulator");
+  mt_gotoXY (80, 24);
+  printf ("F6 - instruction counter");
 
   drawBoxes ();
-
-
 
   for (int i = 0; i < 7; i++)
     {
@@ -135,6 +132,9 @@ main (int argc, char *argv[])
   int lastRowElements = MEM_SIZE % columns;
 
   char isEdit;
+  int newValue;
+  // 0 - nothing, 1 - memory, 2 - accumulator, 3 - IC
+  //char inputState = 0;
   while (1)
     {
       mt_gotoXY (1, 26);
@@ -227,7 +227,6 @@ main (int argc, char *argv[])
                   calculateCoordinates (cur_cell, &row, &column);
                   mt_gotoXY (column, row);
 
-                  int newValue;
                   if (rk_readvalue (&newValue, 0))
                     {
                       sc_memorySet (cur_cell, newValue);
@@ -246,8 +245,20 @@ main (int argc, char *argv[])
               exit (0);
               break;
             case KEY_F5:
+                mt_gotoXY (ACC_X + 4, ACC_Y);
+
+                  if (rk_readvalue (&newValue, 0))
+                    {
+                      sc_accumulatorSet (newValue);
+                    }
               break;
             case KEY_F6:
+            mt_gotoXY (COUNT_X + 15, COUNT_Y);
+
+                  if (rk_readvalue (&newValue, 0))
+                    {
+                      sc_icounterSet (newValue);
+                    }
               break;
             case KEY_LOAD:
               break;
@@ -262,30 +273,30 @@ main (int argc, char *argv[])
             default:
               break;
             }
-          if (cur_cell < 0)
-            cur_cell = MEM_SIZE - 1;
-          if (cur_cell >= MEM_SIZE)
-            cur_cell = 0;
 
-          for (int i = 0; i < MEM_SIZE; i++)
-            {
-              if (i == cur_cell)
+              if (cur_cell < 0)
+                cur_cell = MEM_SIZE - 1;
+              if (cur_cell >= MEM_SIZE)
+                cur_cell = 0;
+
+              for (int i = 0; i < MEM_SIZE; i++)
                 {
-                  printCell (i, BLACK, WHITE);
-                  int val;
-                  sc_memoryGet (i, &val);
-                  printBigCell (val);
-                  printDecodedCommand (val);
-                  continue;
+                  if (i == cur_cell)
+                    {
+                      printCell (i, BLACK, WHITE);
+                      int val;
+                      sc_memoryGet (i, &val);
+                      printBigCell (val);
+                      printDecodedCommand (val);
+                      continue;
+                    }
+                  printCell (i, WHITE, BLACK);
                 }
-              printCell (i, WHITE, BLACK);
-            }
-
           printAccumulator ();
           printCounters ();
           printCommand ();
           printFlags ();
-          drawBoxes();
+          drawBoxes ();
         }
       else
         {
