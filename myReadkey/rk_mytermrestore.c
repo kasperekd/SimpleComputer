@@ -3,5 +3,5 @@
 int
 rk_mytermrestore (void)
 {
-    return tcsetattr(STDIN_FILENO, TCSANOW, &new_termios);
+  return tcsetattr (STDIN_FILENO, TCSANOW, &new_termios);
 }

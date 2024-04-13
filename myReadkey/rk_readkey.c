@@ -50,23 +50,23 @@ rk_readkey (enum keys *key)
     {
       *key = KEY_ENTER;
     }
-  else if (buffer[0] == 108 && buffer[1] == 0) //l
+  else if (buffer[0] == 108 && buffer[1] == 0) // l
     {
       *key = KEY_LOAD;
     }
-  else if (buffer[0] == 115 && buffer[1] == 0) //s
+  else if (buffer[0] == 115 && buffer[1] == 0) // s
     {
       *key = KEY_SAVE;
     }
-  else if (buffer[0] == 114 && buffer[1] == 0) //r
+  else if (buffer[0] == 114 && buffer[1] == 0) // r
     {
       *key = KEY_RUN;
     }
-  else if (buffer[0] == 116 && buffer[1] == 0) //t
+  else if (buffer[0] == 116 && buffer[1] == 0) // t
     {
       *key = KEY_STEP;
     }
-  else if (buffer[0] == 105 && buffer[1] == 0) //i
+  else if (buffer[0] == 105 && buffer[1] == 0) // i
     {
       *key = KEY_RESET;
     }

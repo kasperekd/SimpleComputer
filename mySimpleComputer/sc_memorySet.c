@@ -4,7 +4,8 @@
 int
 sc_memorySet (int address, int value)
 {
-  if (address > MEM_SIZE - 1 || MEM_SIZE < 0 || value > 0xffff || value < -0xffff)
+  if (address > MEM_SIZE - 1 || MEM_SIZE < 0 || value > 0xffff
+      || value < -0xffff)
     {
       return -1;
     }

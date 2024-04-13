@@ -3,6 +3,44 @@
 #include "sc_print.h"
 #include <stdlib.h>
 
+int
+getFileName (char *filename)
+{
+  rk_mytermsave ();
+  rk_mytermregime (0, 0, 1, 1, 1);
+  rk_mytermrestore ();
+  mt_setbgcolor (GREEN);
+
+  char buffer[64];
+  buffer[63] = '\0';
+  char c;
+
+  for (int i = 0; i < 64; i++)
+    {
+      c = getchar ();
+      if (c == 27)
+        {
+          rk_mytermrestore ();
+          mt_setdefaultcolor ();
+          return 0;
+        }
+      if (c == 10)
+        {
+          buffer[i] = '\0';
+          strcpy (filename, buffer);
+          rk_mytermrestore ();
+          mt_setdefaultcolor ();
+          return 1;
+        }
+      buffer[i] = c;
+    }
+
+  rk_mytermrestore ();
+  mt_setdefaultcolor ();
+
+  return 0;
+}
+
 void
 calculateCoordinates (int cellNumber, int *row, int *column)
 {
@@ -78,6 +116,7 @@ main (int argc, char *argv[])
   sc_icounterInit ();
   sc_regInit ();
 
+  short cur_cell = 0;
   for (int i = 0; i < MEM_SIZE; i++)
     {
       sc_memorySet (i, i + 0xf000);
@@ -125,7 +164,6 @@ main (int argc, char *argv[])
 
   // rk_mytermsave();
   enum keys key;
-  short cur_cell = 0;
 
   int columns = 10;
   int _rows = MEM_SIZE / columns;
@@ -133,8 +171,10 @@ main (int argc, char *argv[])
 
   char isEdit;
   int newValue;
+
+  char filenameSL[64];
   // 0 - nothing, 1 - memory, 2 - accumulator, 3 - IC
-  //char inputState = 0;
+  // char inputState = 0;
   while (1)
     {
       mt_gotoXY (1, 26);
@@ -245,53 +285,81 @@ main (int argc, char *argv[])
               exit (0);
               break;
             case KEY_F5:
-                mt_gotoXY (ACC_X + 4, ACC_Y);
+              mt_gotoXY (ACC_X + 4, ACC_Y);
 
-                  if (rk_readvalue (&newValue, 0))
-                    {
-                      sc_accumulatorSet (newValue);
-                    }
+              if (rk_readvalue (&newValue, 0))
+                {
+                  sc_accumulatorSet (newValue);
+                }
               break;
             case KEY_F6:
-            mt_gotoXY (COUNT_X + 15, COUNT_Y);
+              mt_gotoXY (COUNT_X + 15, COUNT_Y);
 
-                  if (rk_readvalue (&newValue, 0))
-                    {
-                      sc_icounterSet (newValue);
-                    }
+              if (rk_readvalue (&newValue, 0))
+                {
+                  sc_icounterSet (newValue);
+                }
               break;
             case KEY_LOAD:
+              mt_gotoXY (1, 26);
+              printf (
+                  "                                                       "
+                  "                                                       ");
+              mt_gotoXY (1, 26);
+              printf ("Enter the name of the file to upload: ");
+              if (getFileName (filenameSL))
+                {
+                  sc_memoryLoad (filenameSL);
+                }
               break;
             case KEY_SAVE:
+              mt_gotoXY (1, 26);
+              printf (
+                  "                                                       "
+                  "                                                       ");
+              mt_gotoXY (1, 26);
+              printf ("Enter the name of the file to save: ");
+              if (getFileName (filenameSL))
+                {
+                  sc_memorySave (filenameSL);
+                }
+
               break;
             case KEY_RUN:
               break;
             case KEY_STEP:
               break;
             case KEY_RESET:
+              cur_cell = 0;
+              for (int i = 0; i < MEM_SIZE; i++)
+                {
+                  sc_memorySet (i, 0x0);
+                }
+              sc_accumulatorSet (0);
+              sc_icounterSet (0);
               break;
             default:
               break;
             }
 
-              if (cur_cell < 0)
-                cur_cell = MEM_SIZE - 1;
-              if (cur_cell >= MEM_SIZE)
-                cur_cell = 0;
+          if (cur_cell < 0)
+            cur_cell = MEM_SIZE - 1;
+          if (cur_cell >= MEM_SIZE)
+            cur_cell = 0;
 
-              for (int i = 0; i < MEM_SIZE; i++)
+          for (int i = 0; i < MEM_SIZE; i++)
+            {
+              if (i == cur_cell)
                 {
-                  if (i == cur_cell)
-                    {
-                      printCell (i, BLACK, WHITE);
-                      int val;
-                      sc_memoryGet (i, &val);
-                      printBigCell (val);
-                      printDecodedCommand (val);
-                      continue;
-                    }
-                  printCell (i, WHITE, BLACK);
+                  printCell (i, BLACK, WHITE);
+                  int val;
+                  sc_memoryGet (i, &val);
+                  printBigCell (val);
+                  printDecodedCommand (val);
+                  continue;
                 }
+              printCell (i, WHITE, BLACK);
+            }
           printAccumulator ();
           printCounters ();
           printCommand ();
