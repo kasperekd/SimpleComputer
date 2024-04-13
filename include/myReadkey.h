@@ -1,6 +1,6 @@
 #pragma once
 #ifndef _READKEY_H
-#define _READKEY_H 1
+#define _READKEY_H
 #include <stdio.h>
 #include <string.h>
 #include <termios.h>
