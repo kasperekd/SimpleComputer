@@ -1,5 +1,7 @@
 #include "myReadkey.h"
 
+struct termios orig_termios, new_termios;
+
 int
 rk_mytermregime (int regime, int vtime, int vmin, int echo, int sigint)
 {

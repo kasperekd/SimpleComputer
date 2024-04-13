@@ -6,7 +6,7 @@
 #include <termios.h>
 #include <unistd.h>
 
-struct termios orig_termios, new_termios;
+extern struct termios orig_termios, new_termios;
 
 enum keys
 {
