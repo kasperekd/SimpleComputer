@@ -1,6 +1,28 @@
 #include "myReadkey.h"
 #include "mySimpleComputer.h"
 #include "sc_print.h"
+#include <stdlib.h>
+
+void
+calculateCoordinates (int cellNumber, int *row, int *column)
+{
+  *row = (cellNumber / 10) + 2;
+  *column = (cellNumber % 10) * 6 + 2;
+}
+void
+drawBoxes ()
+{
+  bc_box (0, 0, 62, 16, WHITE, BLACK, "MEMORY", RED, BLACK);
+  bc_box (0, 16, 62, 3, WHITE, BLACK, "DECODED (format)", RED, WHITE);
+  bc_box (62, 0, 24, 4, WHITE, BLACK, "ACCUMMULATOR", RED, BLACK);
+  bc_box (86, 0, 24, 4, WHITE, BLACK, "FLAGS", RED, BLACK);
+  bc_box (62, 4, 24, 3, WHITE, BLACK, "COUNTER", RED, BLACK);
+  bc_box (86, 4, 24, 3, WHITE, BLACK, "COMMAND", RED, BLACK);
+  bc_box (62, 7, 48, 12, WHITE, BLACK, "EDITABLE CELL (enlarged)", RED, WHITE);
+  bc_box (0, 19, 68, 7, WHITE, BLACK, "CPU CACHE", GREEN, WHITE);
+  bc_box (68, 19, 11, 7, WHITE, BLACK, "IN--OUT", GREEN, WHITE);
+  bc_box (79, 19, 31, 7, WHITE, BLACK, "KEYS", GREEN, WHITE);
+}
 
 int
 main (int argc, char *argv[])
@@ -56,17 +78,6 @@ main (int argc, char *argv[])
   sc_icounterInit ();
   sc_regInit ();
 
-  // BOXES
-  bc_box (0, 0, 62, 16, WHITE, BLACK, "MEMORY", RED, BLACK);
-  bc_box (0, 16, 62, 3, WHITE, BLACK, "DECODED (format)", RED, WHITE);
-  bc_box (62, 0, 24, 4, WHITE, BLACK, "ACCUMMULATOR", RED, BLACK);
-  bc_box (86, 0, 24, 4, WHITE, BLACK, "FLAGS", RED, BLACK);
-  bc_box (62, 4, 24, 3, WHITE, BLACK, "COUNTER", RED, BLACK);
-  bc_box (86, 4, 24, 3, WHITE, BLACK, "COMMAND", RED, BLACK);
-  bc_box (62, 7, 48, 12, WHITE, BLACK, "EDITABLE CELL (enlarged)", RED, WHITE);
-  bc_box (0, 19, 68, 7, WHITE, BLACK, "CPU CACHE", GREEN, WHITE);
-  bc_box (68, 19, 11, 7, WHITE, BLACK, "IN--OUT", GREEN, WHITE);
-  bc_box (79, 19, 31, 7, WHITE, BLACK, "KEYS", GREEN, WHITE);
 
   for (int i = 0; i < MEM_SIZE; i++)
     {
@@ -93,6 +104,7 @@ main (int argc, char *argv[])
   printCounters ();
   printCommand ();
   printFlags ();
+  drawBoxes ();
 
   for (int i = 0; i < 7; i++)
     {
@@ -107,8 +119,7 @@ main (int argc, char *argv[])
   int _rows = MEM_SIZE / columns;
   int lastRowElements = MEM_SIZE % columns;
 
-  char isEdit = 0;
-
+  char isEdit;
   while (1)
     {
       mt_gotoXY (1, 26);
@@ -186,21 +197,38 @@ main (int argc, char *argv[])
                 }
               break;
             case KEY_ENTER:
-            mt_gotoXY (64, 17);
-            if (!isEdit)
-            {
-              isEdit = 1;
-              mt_setfgcolor (BLUE);
-              printf ("Number of the edited cell: %d", cur_cell);
-              mt_setdefaultcolor ();
-            }
-            else
-            {
               isEdit = 0;
+              if (!isEdit)
+                {
+                  isEdit = 1;
+
+                  mt_setfgcolor (BLUE);
+                  mt_setbgcolor (BLACK);
+                  mt_gotoXY (64, 17);
+                  printf ("Number of the edited cell: %d", cur_cell);
+                  mt_setdefaultcolor ();
+
+                  int row, column;
+                  calculateCoordinates (cur_cell, &row, &column);
+                  mt_gotoXY (column, row);
+
+                  int newValue;
+                  if (rk_readvalue (&newValue, 0))
+                    {
+                      sc_memorySet (cur_cell, newValue);
+                    }
+                }
+              else
+                {
+                  isEdit = 0;
+                }
+              mt_setfgcolor (BLUE);
+              mt_gotoXY (64, 17);
+              mt_setdefaultcolor ();
               printf ("                                      ");
-            }              
               break;
             case KEY_ESC:
+              exit (0);
               break;
             case KEY_F5:
               break;
@@ -242,6 +270,7 @@ main (int argc, char *argv[])
           printCounters ();
           printCommand ();
           printFlags ();
+          drawBoxes();
         }
       else
         {

@@ -44,6 +44,7 @@ bc_box (int x1, int y1, int x2, int y2, enum colors box_fg, enum colors box_bg,
       mt_setfgcolor (header_fg);
       mt_setbgcolor (header_bg);
       printf ("%s", header);
+      mt_setdefaultcolor ();
     }
     return 1;
 }

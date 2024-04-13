@@ -17,7 +17,16 @@ printCell (int address, enum colors fg, enum colors bg)
   int value;
   sc_memoryGet (address, &value);
 
-  printf ("+%04X", value);
+if (value > 0)
+{
+  printf ("+");
+}
+else{
+  printf ("-");
+}
 
+  printf ("%04X", value);
   mt_setdefaultcolor ();
+
+  printf (" ");
 }
