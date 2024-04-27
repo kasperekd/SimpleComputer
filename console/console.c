@@ -120,9 +120,11 @@ int main(int argc, char *argv[])
   char filenameSL[64];
   // 0 - nothing, 1 - memory, 2 - accumulator, 3 - IC
   // char inputState = 0;
+  //-----------------------TEST MEM-----------------------//
+  sc_memorySet(14,0x2B00); // END
+  sc_memorySet(10,0x280C); // JUMP
 
-  sc_memorySet(14,0x2B00);
-
+  //-----------------------TEST MEM-----------------------//
   while (1)
   {
     mt_gotoXY(1, 26);

@@ -4,6 +4,7 @@
 #include "ALU.h"
 #include "sc_print.h"
 #include "myReadkey.h"
+#include "sc_helpers.h"
 
 void CU(void);
 

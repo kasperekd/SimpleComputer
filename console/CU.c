@@ -45,7 +45,8 @@ int STORE(int operand)
 
 int JUMP(int operand)
 {
-
+    sc_icounterSet(operand);
+    drawFrame(operand);
     return 0;
 }
 
