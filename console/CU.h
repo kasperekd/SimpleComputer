@@ -3,7 +3,7 @@
 #include "mySimpleComputer.h"
 #include "ALU.h"
 #include "sc_print.h"
-#include "myReadKey.h"
+#include "myReadkey.h"
 
 void CU(void);
 

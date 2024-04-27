@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall
+CFLAGS = -Wall -g
 BUILD_DIR = build
 LIBS = ../mySimpleComputer/build/libmySimpleComputer.a ../myTerm/build/libmyTerm.a ../myBigChars/build/libmyBigChars.a ../myReadkey/build/libmyReadkey.a
 INCLUDE = -I../include/

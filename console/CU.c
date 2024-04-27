@@ -3,7 +3,7 @@
 int READ(int operand)
 {
     mt_gotoXY (1, 26);
-    mt_printText("INPUT > ");
+    printf("INPUT > ");
 
     int value;
     rk_readvalue(&value,0);
@@ -16,6 +16,11 @@ int READ(int operand)
     
     sc_memorySet(operand, value);
     printTerm(operand, 0);
+
+    mt_gotoXY (1, 26);
+    printf (
+                  "                                                       "
+                  "                                                       ");
 
     return 0;
 }
@@ -58,7 +63,7 @@ int JZ(int operand)
 
 int HALT()
 {
-
+    sc_regSet(REG_IMPULSE_IGNORE, 1);
     return 0;
 }
 

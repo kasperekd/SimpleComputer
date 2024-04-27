@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -g
+CFLAGS = -Wall
 BUILD_DIR = build
 INCLUDE = -I../include/
 
