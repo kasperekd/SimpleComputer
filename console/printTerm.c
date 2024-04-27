@@ -6,7 +6,7 @@ void
 printTerm (int address, int input)
 {
   mt_gotoXY (IN_OUT_X, IN_OUT_Y + IO_LINE);
-
+  mt_setdefaultcolor();
   char reg = '>';
 
   if (input < 1)

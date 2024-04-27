@@ -2,9 +2,12 @@
 
 int READ(int operand)
 {
+    drawFrame(operand);
+    mt_gotoXY (1, 26);
+    printf (      "                                                       "
+                  "                                                       ");
     mt_gotoXY (1, 26);
     printf("INPUT > ");
-
     int value;
     rk_readvalue(&value,0);
     
@@ -18,8 +21,7 @@ int READ(int operand)
     printTerm(operand, 0);
 
     mt_gotoXY (1, 26);
-    printf (
-                  "                                                       "
+    printf (      "                                                       "
                   "                                                       ");
 
     return 0;

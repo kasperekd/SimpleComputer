@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
   int cur_cell = 0;
   for (int i = 0; i < MEM_SIZE; i++)
   {
-    sc_memorySet(i, i + 0xf000);
+    sc_memorySet(i, 0x0000);
   }
 
   for (int i = 0; i < MEM_SIZE; i++)
@@ -123,6 +123,7 @@ int main(int argc, char *argv[])
   //-----------------------TEST MEM-----------------------//
   sc_memorySet(14,0x2B00); // END
   sc_memorySet(10,0x280C); // JUMP
+  sc_memorySet(3,0x0A78); // READ
 
   //-----------------------TEST MEM-----------------------//
   while (1)
