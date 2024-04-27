@@ -7,17 +7,16 @@ printTerm (int address, int input)
 {
   mt_gotoXY (IN_OUT_X, IN_OUT_Y + IO_LINE);
 
-  if (input)
-    {
-      int value;
-      sc_memoryGet (address, &value);
+  char reg = '>';
 
-      printf ("%02X> +%04X", address, value);
-    }
-  else
+  if (input < 1)
     {
-      printf ("%02X> ", address);
+      reg = '<';
     }
+    int value;
+    sc_memoryGet (address, &value);
+
+    printf ("%02X%c +%04X", address, reg, value);
 
   IO_LINE = (IO_LINE + 1) % 5;
 }

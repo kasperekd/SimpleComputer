@@ -7,7 +7,7 @@ int
 getFileName (char *filename)
 {
   rk_mytermsave ();
-  rk_mytermregime (0, 0, 1, 1, 1);
+  rk_mytermregime (1, 0, 1, 1, 1);
   rk_mytermrestore ();
   mt_setbgcolor (GREEN);
 
@@ -157,10 +157,10 @@ main (int argc, char *argv[])
 
   drawBoxes ();
 
-  for (int i = 0; i < 7; i++)
-    {
-      printTerm (i + 5, 1);
-    }
+  // for (int i = 0; i < 7; i++)
+  //   {
+  //     printTerm (i + 5, 1);
+  //   }
 
   // rk_mytermsave();
   enum keys key;
@@ -311,6 +311,11 @@ main (int argc, char *argv[])
                 {
                   sc_memoryLoad (filenameSL);
                 }
+              mt_gotoXY (1, 26);
+              printf (
+                  "                                                       "
+                  "                                                       ");
+              mt_gotoXY (1, 26);
               break;
             case KEY_SAVE:
               mt_gotoXY (1, 26);
@@ -323,7 +328,11 @@ main (int argc, char *argv[])
                 {
                   sc_memorySave (filenameSL);
                 }
-
+              mt_gotoXY (1, 26);
+              printf (
+                  "                                                       "
+                  "                                                       ");
+              mt_gotoXY (1, 26);
               break;
             case KEY_RUN:
               break;
