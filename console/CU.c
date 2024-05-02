@@ -29,38 +29,59 @@ int READ(int operand)
 
 int WRITE(int operand)
 {
-
+    printTerm(operand, 1);
     return 0;
 }
 
 int LOAD(int operand)
 {
-
+    int val;
+    sc_memoryGet(operand, &val);
+    drawFrame(operand);
+    sc_accumulatorSet(val);
     return 0;
 }
 
 int STORE(int operand)
 {
-
+    int val;
+    sc_accumulatorGet(&val);
+    drawFrame(operand);
+    sc_memorySet(operand, val);
     return 0;
 }
 
 int JUMP(int operand)
 {
     sc_icounterSet(operand);
-    drawFrame(operand);
+    //drawFrame(operand);
+    // raise (SIGALRM);//CU();
     return 0;
 }
 
 int JNEG(int operand)
 {
-
+    int val;
+    sc_accumulatorGet(&val);
+    if (val < 0)
+    {
+        sc_icounterSet(operand);
+        // drawFrame(operand);
+        // raise (SIGALRM);//CU();
+    }
     return 0;
 }
 
 int JZ(int operand)
 {
-
+    int val;
+    sc_accumulatorGet(&val);
+    if (val == 0)
+    {
+        sc_icounterSet(operand);
+        // drawFrame(operand);
+        // raise (SIGALRM);//CU();
+    }
     return 0;
 }
 

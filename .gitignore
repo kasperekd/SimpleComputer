@@ -10,3 +10,4 @@
 /myTerm/build
 form.sh
 output
+*.o

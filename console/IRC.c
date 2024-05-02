@@ -10,24 +10,8 @@ void IRC(int signum)
 {
     if (signum == SIGALRM)
     {
-        CU();
-        
         int ignore;
         sc_regGet(REG_IMPULSE_IGNORE, &ignore);
-        
-        int ic;
-        sc_icounterGet(&ic);
-            drawFrame(ic);
-        
-        if (!ignore && ic < 99 && ic >= 0)
-        {
-            sc_icounterSet(++ic);
-        }
-        else if (ic >= 99)
-        {
-            sc_icounterSet(0);
-        }
-        
         if (!ignore)
         {
             struct itimerval timer;
@@ -38,6 +22,20 @@ void IRC(int signum)
 
             setitimer(ITIMER_REAL, &timer, NULL);
         }
+        
+        int ic;
+        sc_icounterGet(&ic);
+            drawFrame(ic);
+        
+        if (ic < 99 && ic >= 0)
+        {
+            sc_icounterSet(++ic);
+        }
+        else if (ic >= 99)
+        {
+            sc_icounterSet(0);
+        }
+        CU();
         
     }
     else if (signum == SIGUSR1)

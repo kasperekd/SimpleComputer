@@ -1,40 +1,37 @@
 #include "sc_helpers.h"
 
-int getFileName(char *filename)
+int
+getFileName (char *filename)
 {
-  rk_mytermsave();
-  rk_mytermregime(1, 0, 1, 1, 1);
-  rk_mytermrestore();
-  mt_setbgcolor(GREEN);
+mt_setbgcolor (GREEN);
+int index = 0;
+    char c;
 
-  char buffer[64];
-  buffer[63] = '\0';
-  char c;
-
-  for (int i = 0; i < 64; i++)
-  {
-    c = getchar();
-    if (c == 27)
-    {
-      rk_mytermrestore();
-      mt_setdefaultcolor();
-      return 0;
-    }
-    if (c == 10)
-    {
-      buffer[i] = '\0';
-      strcpy(filename, buffer);
-      rk_mytermrestore();
-      mt_setdefaultcolor();
-      return 1;
-    }
-    buffer[i] = c;
-  }
-
-  rk_mytermrestore();
-  mt_setdefaultcolor();
-
-  return 0;
+    do {
+        c = getchar(); 
+        
+        if (c == 10) { 
+            filename[index] = '\0';
+            mt_setdefaultcolor ();
+            return 1;
+        } else if (c == 27) {
+            mt_setdefaultcolor ();
+            return 0;
+        }
+        else if (c == 8 || c == 127) {
+          if (index > 0) {
+              index--;
+              mt_setdefaultcolor ();
+              printf("\b \b");
+              mt_setbgcolor (GREEN);
+          }
+        }
+        else {
+            printf("%c", c);
+            filename[index] = c;
+            index++;
+        }
+    } while (1);
 }
 
 void calculateCoordinates(int cellNumber, int *row, int *column)

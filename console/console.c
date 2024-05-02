@@ -122,8 +122,11 @@ int main(int argc, char *argv[])
   // char inputState = 0;
   //-----------------------TEST MEM-----------------------//
   sc_memorySet(14,0x2B00); // END
-  sc_memorySet(10,0x280C); // JUMP
-  sc_memorySet(3,0x0A78); // READ
+  // sc_memorySet(10,0x2807); // JUMP
+  // sc_memorySet(3,0x0A78); // READ
+  sc_memorySet(4,0x1578); // STORE
+  sc_memorySet(13,0x1478); // LOAD
+
 
   //-----------------------TEST MEM-----------------------//
   while (1)
