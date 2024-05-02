@@ -63,7 +63,10 @@ int JNEG(int operand)
 {
     int val;
     sc_accumulatorGet(&val);
-    if (val < 0)
+
+    int sign, command, _operand;
+    sc_commandDecode(val, &sign, &command, &_operand);
+    if (sign == 0)
     {
         sc_icounterSet(operand);
         // drawFrame(operand);
@@ -76,7 +79,12 @@ int JZ(int operand)
 {
     int val;
     sc_accumulatorGet(&val);
-    if (val == 0)
+
+    int sign, command, _operand;
+    sc_commandDecode(val, &sign, &command, &_operand);
+
+    int normalValue = (command << 8) ^ _operand;
+    if (normalValue == 0)
     {
         sc_icounterSet(operand);
         // drawFrame(operand);

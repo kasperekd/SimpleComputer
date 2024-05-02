@@ -11,7 +11,7 @@ printDecodedCommand (int value)
   int sign, command, operand;
     sc_commandDecode(value, &sign, &command, &operand);
 
-  int normalValue = (command << 8) ^ operand;
+  int normalValue = (command << COMMAND_COMMAND_SHIFT) ^ operand;
   char signChar;
     if (sign == 0)
     {
