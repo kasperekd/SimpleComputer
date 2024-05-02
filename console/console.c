@@ -121,6 +121,8 @@ int main(int argc, char *argv[])
   // 0 - nothing, 1 - memory, 2 - accumulator, 3 - IC
   // char inputState = 0;
   //-----------------------TEST MEM-----------------------//
+  sc_memorySet(0,0x9100);// test
+
   sc_memorySet(14,0x2B00); // END
   // sc_memorySet(10,0x2807); // JUMP
   // sc_memorySet(3,0x0A78); // READ

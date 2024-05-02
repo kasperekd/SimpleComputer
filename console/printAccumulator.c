@@ -8,14 +8,19 @@ printAccumulator ()
 
   mt_gotoXY (ACC_X, ACC_Y);
 
-  printf ("SC: ");
-  if (accumulator >= 0)
+int sign, command, operand;
+    sc_commandDecode(accumulator, &sign, &command, &operand);
+
+  int normalValue = (command << 8) ^ operand;
+  char signChar;
+    if (sign == 0)
     {
-      printf ("+");
+      signChar = '-';
     }
-  else
+    else
     {
-      printf ("-");
+      signChar = '+';
     }
-  printf ("%04x HEX: %04X", accumulator, accumulator);
+
+  printf ("SC: %c%04X HEX: %04X",signChar, normalValue, accumulator);
 }

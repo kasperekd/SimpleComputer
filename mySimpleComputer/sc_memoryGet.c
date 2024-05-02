@@ -6,8 +6,8 @@ sc_memoryGet (int address, int *value)
 {
   if (address > MEM_SIZE - 1 || MEM_SIZE < 0)
     {
-      return -1;
+      return 0;
     }
   *value = MEMORY[address];
-  return 0;
+  return 1;
 }

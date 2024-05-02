@@ -48,7 +48,7 @@ rk_readvalue (int *value, int timeout)
             }
           *value = strtol (digits, NULL, 16);
           if (sign == '-')
-            *value *= -1;
+            *value |= COMMAND_SIGN_BIT;//*= -1;
           rk_mytermrestore ();
           mt_setdefaultcolor ();
           return 1;

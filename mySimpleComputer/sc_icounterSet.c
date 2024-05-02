@@ -6,8 +6,8 @@ sc_icounterSet (int value)
 {
   if (value < 0x0 || value > 0xffff)
     {
-      return -1;
+      return 0;
     }
   ICOUNTER = value;
-  return 0;
+  return 1;
 }

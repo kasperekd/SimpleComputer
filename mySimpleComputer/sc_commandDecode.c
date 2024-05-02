@@ -12,8 +12,8 @@ sc_commandDecode (int value, int *sign, int *command, int *operand)
       || (*operand) < 0 || (*operand) >= (1 << 10))
     {
       sc_regSet (REG_INVALID_COMMAND, 1);
-      return -1;
+      return 0;
     }
 
-  return 0;
+  return 1;
 }

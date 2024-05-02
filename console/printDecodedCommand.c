@@ -7,9 +7,23 @@ printDecodedCommand (int value)
   printf (
       "                                                                  ");
   mt_gotoXY (DEC_X, DEC_Y);
-  printf ("DEC: %d | ", value);
-  printf ("OCT: %o | ", value);
-  printf ("HEX: %X  ", value);
+
+  int sign, command, operand;
+    sc_commandDecode(value, &sign, &command, &operand);
+
+  int normalValue = (command << 8) ^ operand;
+  char signChar;
+    if (sign == 0)
+    {
+      signChar = '-';
+    }
+    else
+    {
+      signChar = ' ';
+    }
+  printf ("DEC:%c%05d | ",signChar, normalValue);
+  printf ("OCT:%c%06o | ",signChar, normalValue);
+  printf ("HEX:%c%04X  ",signChar, normalValue);
   printf ("BIN: ");
   for (int i = 15; i >= 0; i--)
     {
