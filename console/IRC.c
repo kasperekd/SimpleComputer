@@ -44,6 +44,11 @@ void IRC(int signum)
         sc_accumulatorSet(0);
         sc_icounterSet(0);
         sc_regSet(REG_IMPULSE_IGNORE, 1);
+        
+        sc_regSet(REG_INVALID_COMMAND, 0);
+        sc_regSet(REG_MEMORY_OUT_OF_BOUNDS, 0);
+        sc_regSet(REG_OVERFLOW, 0);
+        sc_regSet(REG_DIVISION_BY_ZERO, 0);
     }
 }
 

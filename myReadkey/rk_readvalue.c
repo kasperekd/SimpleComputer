@@ -1,5 +1,6 @@
 #include "myReadkey.h"
 #include "myTerm.h"
+#include "mySimpleComputer.h"
 #include <ctype.h>
 
 int
@@ -19,6 +20,7 @@ rk_readvalue (int *value, int timeout)
   sign = getchar ();
   if (sign != '+' && sign != '-')
     {
+      sc_regSet (REG_INVALID_COMMAND, 1);
       return 0;
     }
 
@@ -40,6 +42,7 @@ rk_readvalue (int *value, int timeout)
                 {
                   rk_mytermrestore ();
                   mt_setdefaultcolor ();
+                  sc_regSet (REG_INVALID_COMMAND, 1);
                   return 0;
                 }
             }
@@ -52,6 +55,7 @@ rk_readvalue (int *value, int timeout)
         }
       digits[i] = c;
     }
+    sc_regSet (REG_INVALID_COMMAND, 1);
   rk_mytermrestore ();
   mt_setdefaultcolor ();
 
