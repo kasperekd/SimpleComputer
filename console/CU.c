@@ -1,5 +1,16 @@
 #include "CU.h"
 
+int CPUINFO()
+{
+    mt_gotoXY (1, 26);
+    printf (      "                                                       "
+                  "                                                       ");
+    mt_gotoXY (1, 26);
+    printf("Oshlakov Konstantin Konstantinovich IA-232");
+
+    return 0;
+}
+
 int READ(int operand)
 {
     drawFrame(operand);
@@ -53,7 +64,8 @@ int STORE(int operand)
 
 int JUMP(int operand)
 {
-    sc_icounterSet(operand);
+    sc_icounterSet(operand - 1);
+
     //drawFrame(operand);
     // raise (SIGALRM);//CU();
     return 0;
@@ -68,7 +80,7 @@ int JNEG(int operand)
     sc_commandDecode(val, &sign, &command, &_operand);
     if (sign == 0)
     {
-        sc_icounterSet(operand);
+        sc_icounterSet(operand - 1);
         // drawFrame(operand);
         // raise (SIGALRM);//CU();
     }
@@ -86,7 +98,7 @@ int JZ(int operand)
     int normalValue = (command << 8) ^ _operand;
     if (normalValue == 0)
     {
-        sc_icounterSet(operand);
+        sc_icounterSet(operand - 1);
         // drawFrame(operand);
         // raise (SIGALRM);//CU();
     }
@@ -122,7 +134,7 @@ void CU()
 		return;
     }
 
-    if ((command >= 0x1E) && (command <= 0x21))
+    if (((command >= 0x1E) && (command <= 0x21)) || ((command >= 0x33) && (command <= 0x36)))
 	{
 		ALU(command, operand);
 	}
@@ -130,6 +142,11 @@ void CU()
 	{
 		switch(command)
 		{
+            case 0x00:
+					break;
+            case 0x01:
+					CPUINFO();
+					break;
 			case 0x0A:
 					READ(operand);
 					break;

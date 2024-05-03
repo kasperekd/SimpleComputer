@@ -130,10 +130,14 @@ int main(int argc, char *argv[])
   // sc_memorySet(13,0x1478); // LOAD
   // sc_memorySet(5,0x290F); // JNEG
   //sc_memorySet(7,0x2A0F); // JZ
-  sc_memorySet(110,0x8010); // set for add
-  sc_memorySet(5,0x1E6E); // ADD
+  // sc_memorySet(110,0x8010); // set for add
+  // sc_memorySet(5,0x1E6E); // ADD
+  // sc_memorySet(5,0x1F6E); // SUB
+  // sc_memorySet(5,0x206E); // DIVIDE
+  // sc_memorySet(2,0x0100); // CPUINFO
+  sc_memorySet(3,0x3300);
 
-
+  sc_icounterSet(0x0001);
 
   //-----------------------TEST MEM-----------------------//
   while (1)

@@ -10,6 +10,7 @@ void IRC(int signum)
 {
     if (signum == SIGALRM)
     {
+        CU();
         int ignore;
         sc_regGet(REG_IMPULSE_IGNORE, &ignore);
         if (!ignore)
@@ -25,7 +26,6 @@ void IRC(int signum)
         
         int ic;
         sc_icounterGet(&ic);
-            drawFrame(ic);
         
         if (ic < 99 && ic >= 0)
         {
@@ -35,7 +35,7 @@ void IRC(int signum)
         {
             sc_icounterSet(0);
         }
-        CU();
+            drawFrame(ic);
         
     }
     else if (signum == SIGUSR1)
