@@ -53,12 +53,12 @@ int main(int argc, char *argv[])
     font[i] = &fontData[i * 2];
   }
 
-  setSignals();
   sc_memoryInit();
   sc_accumulatorInit();
   sc_icounterInit();
   sc_regInit();
   sc_regSet(REG_IMPULSE_IGNORE, 1);
+  setSignals();
 
   int cur_cell = 0;
   for (int i = 0; i < MEM_SIZE; i++)
@@ -123,8 +123,8 @@ int main(int argc, char *argv[])
   //-----------------------TEST MEM-----------------------//
   //sc_memorySet(0,0x9100);// test
 
-  sc_memorySet(14,0x2B00); // END
-   sc_memorySet(8,0x2803); // JUMP
+  // sc_memorySet(14,0x2B00); // END
+  //  sc_memorySet(8,0x2803); // JUMP
   // sc_memorySet(3,0x0A78); // READ
   // sc_memorySet(4,0x1578); // STORE
   // sc_memorySet(13,0x1478); // LOAD
@@ -135,15 +135,15 @@ int main(int argc, char *argv[])
   // sc_memorySet(5,0x1F6E); // SUB
   // sc_memorySet(5,0x206E); // DIVIDE
   // sc_memorySet(2,0x0100); // CPUINFO
-  sc_memorySet(3,0x3300);
+  // sc_memorySet(3,0x3300);
 
-  sc_icounterSet(0x0001);
+  // sc_icounterSet(0x0000);
 
   //-----------------------TEST MEM-----------------------//
   while (1)
   {
     mt_gotoXY(1, 26);
-    if (rk_readkey(&key) == 0)
+   if (rk_readkey(&key) == 0)
     {
       int ignore;
       sc_regGet(REG_IMPULSE_IGNORE, &ignore);
@@ -319,7 +319,6 @@ int main(int argc, char *argv[])
         }
         else
         {
-          alarm(0);
           sc_regSet(REG_IMPULSE_IGNORE, 1);
         }
         break;
