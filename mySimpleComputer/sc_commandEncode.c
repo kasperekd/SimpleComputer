@@ -27,11 +27,11 @@ sc_commandEncode (int sign, int command, int operand, int *value)
   val |= (command << COMMAND_COMMAND_SHIFT);
   val |= (operand & COMMAND_OPERAND_BITS);
 
-  if (sc_commandValidate(val))
-  {
-    *value = val;
-    return 1;
-  }
+  if (sc_commandValidate (val))
+    {
+      *value = val;
+      return 1;
+    }
 
   return 0;
 }

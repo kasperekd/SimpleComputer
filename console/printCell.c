@@ -18,7 +18,7 @@ printCell (int address, enum colors fg, enum colors bg)
   sc_memoryGet (address, &value);
 
   int sign, command, operand;
-  sc_commandDecode(value, &sign, &command, &operand);
+  sc_commandDecode (value, &sign, &command, &operand);
 
   if (sign == 0)
     {

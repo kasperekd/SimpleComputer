@@ -7,15 +7,15 @@ printBigCell (int val)
 {
 
   int sign, command, operand;
-    sc_commandDecode(val, &sign, &command, &operand);
+  sc_commandDecode (val, &sign, &command, &operand);
 
   int normalValue = (command << COMMAND_COMMAND_SHIFT) ^ operand;
   int signIndex;
-    if (sign == 0)
+  if (sign == 0)
     {
       signIndex = 17;
     }
-    else
+  else
     {
       signIndex = 16;
     }

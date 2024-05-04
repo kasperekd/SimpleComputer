@@ -1,6 +1,6 @@
 #include "myReadkey.h"
-#include "myTerm.h"
 #include "mySimpleComputer.h"
+#include "myTerm.h"
 #include <ctype.h>
 
 int
@@ -48,14 +48,14 @@ rk_readvalue (int *value, int timeout)
             }
           *value = strtol (digits, NULL, 16);
           if (sign == '-')
-            *value |= COMMAND_SIGN_BIT;//*= -1;
+            *value |= COMMAND_SIGN_BIT; //*= -1;
           rk_mytermrestore ();
           mt_setdefaultcolor ();
           return 1;
         }
       digits[i] = c;
     }
-    sc_regSet (REG_INVALID_COMMAND, 1);
+  sc_regSet (REG_INVALID_COMMAND, 1);
   rk_mytermrestore ();
   mt_setdefaultcolor ();
 
