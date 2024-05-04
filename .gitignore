@@ -11,3 +11,4 @@ font.dat
 form.sh
 output
 *.o
+!/examples/*
