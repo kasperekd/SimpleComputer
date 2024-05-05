@@ -18,7 +18,7 @@ sc_memoryLoad (char *filename)
     }
   for (int i = 0; i < MEM_SIZE; i++)
     {
-      MEMORY[i] = temp_memory[i];
+      sc_memorySet (i, temp_memory[i]);
     }
   fclose (file);
   return 0;

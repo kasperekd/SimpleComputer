@@ -10,7 +10,21 @@ sc_memorySave (char *filename)
     {
       return -1;
     }
-  if (fwrite (MEMORY, sizeof (int), MEM_SIZE, file) != MEM_SIZE)
+  int newMEMORY[128];
+  for (int i = 0; i < MEM_SIZE; i++)
+    {
+      int tmp;
+      if (sc_memoryGet (i, &tmp))
+        {
+          newMEMORY[i] = tmp;
+        }
+      else
+        {
+          return -1;
+        }
+    }
+
+  if (fwrite (newMEMORY, sizeof (int), MEM_SIZE, file) != MEM_SIZE)
     {
       fclose (file);
       return -1;
