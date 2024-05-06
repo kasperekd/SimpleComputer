@@ -4,10 +4,11 @@ void
 setSignals ()
 {
   signal (SIGALRM, IRC);
-  signal (SIGUSR1, IRC);  
+  signal (SIGUSR1, IRC);
 }
 
-void setTimer()
+void
+setTimer ()
 {
   struct itimerval timer;
   timer.it_value.tv_sec = 0;
