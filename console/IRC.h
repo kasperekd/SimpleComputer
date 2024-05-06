@@ -8,6 +8,7 @@
 #include <unistd.h>
 
 void setSignals ();
+void setTimer ();
 void IRC (int signum);
 
 #endif

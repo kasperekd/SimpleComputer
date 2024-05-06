@@ -60,6 +60,7 @@ main (int argc, char *argv[])
   sc_regInit ();
   sc_regSet (REG_IMPULSE_IGNORE, 1);
   setSignals ();
+  setTimer();
 
   int cur_cell = 0;
   for (int i = 0; i < MEM_SIZE; i++)
@@ -321,7 +322,6 @@ main (int argc, char *argv[])
               if (ignoreFlag)
                 {
                   sc_regSet (REG_IMPULSE_IGNORE, 0);
-                  IRC (SIGALRM);
                   sc_icounterGet (&cur_cell);
                 }
               else
@@ -330,7 +330,11 @@ main (int argc, char *argv[])
                 }
               break;
             case KEY_STEP:
+              alarm(0);
+              sc_regSet (REG_IMPULSE_IGNORE, 0);
               IRC (SIGALRM);
+              sc_regSet (REG_IMPULSE_IGNORE, 1);
+              setTimer();
               sc_icounterGet (&cur_cell);
               break;
             case KEY_RESET:

@@ -50,7 +50,7 @@ rk_readkey (enum keys *key)
     {
       *key = KEY_ENTER;
     }
-  else if (buffer[0] == 108 && buffer[1] == 0) // l
+  else if (buffer[0] == 108 && buffer[1] == 0) // l 
     {
       *key = KEY_LOAD;
     }

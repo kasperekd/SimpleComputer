@@ -4,8 +4,11 @@ void
 setSignals ()
 {
   signal (SIGALRM, IRC);
-  signal (SIGUSR1, IRC);
+  signal (SIGUSR1, IRC);  
+}
 
+void setTimer()
+{
   struct itimerval timer;
   timer.it_value.tv_sec = 0;
   timer.it_value.tv_usec = 500000; // в микросекундах
