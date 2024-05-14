@@ -12,7 +12,7 @@ printCommand ()
   int sign, command, operand;
   int decodeResult = sc_commandDecode (valueMEM, &sign, &command, &operand);
 
-  if (decodeResult == -1 || icResult == -1 || memoryResult == -1)
+  if (decodeResult == -1 || icResult == -1 || memoryResult == -1 || sign == 1)
     {
       printf ("!");
       printf ("+ FF : FF");
