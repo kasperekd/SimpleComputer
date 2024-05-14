@@ -144,13 +144,12 @@ CU ()
       return;
     }
 
-    if (sign == 1)
+  if (sign == 1)
     {
-        sc_regSet (REG_IMPULSE_IGNORE, 1);
-       sc_regSet(REG_INVALID_COMMAND, 1);
+      sc_regSet (REG_IMPULSE_IGNORE, 1);
+      sc_regSet (REG_INVALID_COMMAND, 1);
       return;
     }
-    
 
   if (((command >= 0x1E) && (command <= 0x21))
       || ((command >= 0x33) && (command <= 0x36)))
