@@ -12,3 +12,4 @@ form.sh
 output
 *.o
 !/examples/*
+translators/build/sat

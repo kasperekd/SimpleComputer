@@ -8,16 +8,16 @@ sc_commandEncode (int sign, int command, int operand, int *value)
   //     sc_regSet (REG_INVALID_COMMAND, 1);
   //     return -1;
   //   }
-  // if (command < 0 || command >= 0x7F)
-  //   {
-  //     sc_regSet (REG_INVALID_COMMAND, 1);
-  //     return -1;
-  //   }
-  // if (operand < 0 || operand >= 0xFF)
-  //   {
-  //     sc_regSet (REG_INVALID_COMMAND, 1);
-  //     return -1;
-  //   }
+  if (command < 0 || command > 0x7F)
+    {
+      sc_regSet (REG_INVALID_COMMAND, 1);
+      return -1;
+    }
+  if (operand < 0 || operand > 0xFF)
+    {
+      sc_regSet (REG_INVALID_COMMAND, 1);
+      return -1;
+    }
 
   int val = 0;
   if (sign == 1)
@@ -33,5 +33,5 @@ sc_commandEncode (int sign, int command, int operand, int *value)
       return 1;
     }
 
-  return 0;
+  return -1;
 }
