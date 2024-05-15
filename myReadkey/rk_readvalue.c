@@ -61,14 +61,14 @@ rk_readvalue (int *value, int timeout)
           // *value = strtol (digits, NULL, 16);
           if (sign == '-')
             {
-              if (sc_commandEncode (1, command, operand, &val))
+              if (sc_commandEncode (1, command, operand, &val) < 0)
               {
                 return -1;
               }
             }
           else
             {
-              if (sc_commandEncode (0, command, operand, &val))
+              if (sc_commandEncode (0, command, operand, &val) < 0)
               {
                 return -1;
               }
