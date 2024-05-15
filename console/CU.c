@@ -144,7 +144,7 @@ CU ()
       return;
     }
 
-  if (sign == 0)
+  if (sign == 1)
     {
       sc_regSet (REG_IMPULSE_IGNORE, 1);
       sc_regSet (REG_INVALID_COMMAND, 1);

@@ -20,7 +20,7 @@ printCommand ()
     }
   else
     {
-      printf ("%c ", ((sign) ? '+' : '-'));
+      printf ("%c ", ((sign) ? '-' : '+'));
       printf ("%02X : ", command);
       printf ("%02X", operand);
     }

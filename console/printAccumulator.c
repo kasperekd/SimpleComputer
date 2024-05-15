@@ -13,7 +13,7 @@ printAccumulator ()
 
   int normalValue = (command << 8) ^ operand;
   char signChar;
-  if (sign == 0)
+  if (sign == 1)
     {
       signChar = '-';
     }

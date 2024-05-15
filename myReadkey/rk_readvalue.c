@@ -46,9 +46,34 @@ rk_readvalue (int *value, int timeout)
                   return 0;
                 }
             }
-          *value = strtol (digits, NULL, 16);
+          int command, operand, val;
+          char _command[3], _operand[3];
+          _command[0] = digits[0];
+          _command[1] = digits[1];
+          _command[2] = '\0';
+
+          _operand[0] = digits[2];
+          _operand[1] = digits[3];
+          _operand[2] = '\0';
+
+          command = strtol (_command, NULL, 16);
+          operand = strtol (_operand, NULL, 16);
+          // *value = strtol (digits, NULL, 16);
           if (sign == '-')
-            *value |= COMMAND_SIGN_BIT; //*= -1;
+            {
+              if (sc_commandEncode (1, command, operand, &val) < 0)
+              {
+                return -1;
+              }
+            }
+          else
+            {
+              if (sc_commandEncode (0, command, operand, &val) < 0)
+              {
+                return -1;
+              }
+            }
+          *value = val;
           rk_mytermrestore ();
           mt_setdefaultcolor ();
           return 1;
