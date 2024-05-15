@@ -6,7 +6,7 @@ all:
 	@$(MAKE) -C myTerm
 	@$(MAKE) -C myReadkey
 	@$(MAKE) -C console
-	@$(MAKE) -C translator
+	@$(MAKE) -C translators
 	
 clean:
 	@$(MAKE) -C mySimpleComputer clean
@@ -14,4 +14,4 @@ clean:
 	@$(MAKE) -C myTerm clean
 	@$(MAKE) -C myReadkey clean
 	@$(MAKE) -C console clean
-	@$(MAKE) -C translator clean
+	@$(MAKE) -C translators clean

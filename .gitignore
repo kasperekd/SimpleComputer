@@ -8,6 +8,7 @@ font.dat
 /mySimpleComputer/mem
 /mySimpleComputer/save
 /myTerm/build
+/translators/build
 form.sh
 output
 *.o
