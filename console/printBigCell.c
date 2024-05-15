@@ -11,7 +11,7 @@ printBigCell (int val)
 
   int normalValue = (command << COMMAND_COMMAND_SHIFT) ^ operand;
   int signIndex;
-  if (sign == 0)
+  if (sign == 1)
     {
       signIndex = 17;
     }

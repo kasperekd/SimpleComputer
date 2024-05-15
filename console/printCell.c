@@ -20,7 +20,7 @@ printCell (int address, enum colors fg, enum colors bg)
   int sign, command, operand;
   sc_commandDecode (value, &sign, &command, &operand);
 
-  if (sign == 0)
+  if (sign == 1)
     {
       printf ("-");
     }

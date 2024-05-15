@@ -15,12 +15,12 @@ printCommand ()
   if (decodeResult == -1 || icResult == -1 || memoryResult == -1 || sign == 1)
     {
       printf ("!");
-      printf ("+ FF : FF");
+      printf (" FF : FF");
       sc_regSet (REG_MEMORY_OUT_OF_BOUNDS, 1);
     }
   else
     {
-      printf ("%c ", ((sign) ? '+' : '-'));
+      printf ("%c ", ((sign) ? '-' : '+'));
       printf ("%02X : ", command);
       printf ("%02X", operand);
     }

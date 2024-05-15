@@ -13,7 +13,7 @@ printDecodedCommand (int value)
 
   int normalValue = (command << COMMAND_COMMAND_SHIFT) ^ operand;
   char signChar;
-  if (sign == 0)
+  if (sign == 1)
     {
       signChar = '-';
     }

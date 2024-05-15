@@ -24,7 +24,7 @@ sc_commandEncode (int sign, int command, int operand, int *value)
     {
       val |= COMMAND_SIGN_BIT;
     }
-  val |= (command << COMMAND_COMMAND_SHIFT);
+  val |= (command << COMMAND_COMMAND_SHIFT) & COMMAND_COMMAND_BITS;
   val |= (operand & COMMAND_OPERAND_BITS);
 
   if (sc_commandValidate (val))
