@@ -61,7 +61,7 @@ getVariableAddress (char name)
       if (Variables[i].Name == NULL)
         {
           Variables[i].Name = name;
-          Variables[i].Address = 99 - i;
+          Variables[i].Address = 127 - i;
           variableCount++;
           return Variables[i].Address;
         }
@@ -669,15 +669,15 @@ function (char *command, char *arguments)
     }
 }
 
-int
-main (int argc, const char **argv)
+int main (int argc, const char **argv)
 {
+  int keepTmp = 0;
 
   if (argc < 3)
-    {
-      fprintf (stderr, "Usage: %s input.sb output.o\n", argv[0]);
-      exit (EXIT_FAILURE);
-    }
+  {
+    fprintf (stderr, "Usage: %s input.sb output.o [keep_tmp]\n", argv[0]);
+    exit (EXIT_FAILURE);
+  }
 
   loadFile (argv[1], "tmp.sa");
 
@@ -686,22 +686,27 @@ main (int argc, const char **argv)
   fclose (output);
 
   if (variableCount + assemblerCommandCounter > 100)
-    {
-      fprintf (stderr, "RAM overflow error!\n");
-      system ("rm -rf tmp.sa");
-    }
+  {
+    fprintf (stderr, "RAM overflow error!\n");
+    system ("rm -rf tmp.sa");
+  }
 
   char sat[255];
   sprintf (sat, "./sat tmp.sa %s\n", argv[2]);
   system (sat);
 
   if (argc >= 4)
+  {
+    if (argv[3][0] == '1')
     {
-      if (argv[3][0] == '1')
-        {
-          return 0;
-        }
+      keepTmp = 1;
     }
-  system ("rm -rf tmp.sa");
+  }
+
+  if (!keepTmp)
+  {
+    system ("rm -rf tmp.sa");
+  }
+
   return 0;
 }

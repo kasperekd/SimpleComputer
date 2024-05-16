@@ -24,7 +24,21 @@ IRC (int signum)
 {
   if (signum == SIGALRM)
     {
-      int ignorePre;
+      int ignorePre, C, M, Z, O;
+      sc_regGet (REG_INVALID_COMMAND, &C);
+      sc_regGet (REG_MEMORY_OUT_OF_BOUNDS, &M);
+      sc_regGet (REG_OVERFLOW, &O);
+      sc_regGet (REG_DIVISION_BY_ZERO, &Z);
+
+      C += M + Z + O;
+
+      if (C > 0)
+      {
+        sc_regSet (REG_IMPULSE_IGNORE, 1);
+        return;
+      }
+      
+
       sc_regGet (REG_IMPULSE_IGNORE, &ignorePre);
       if (!ignorePre)
         {

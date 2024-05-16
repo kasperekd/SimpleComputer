@@ -69,26 +69,8 @@ main (int argc, char *argv[])
       sc_memorySet (i, 0x0000);
     }
 
-  for (int i = 0; i < MEM_SIZE; i++)
-    {
-      if (i == 0)
-        {
-          printCell (i, BLACK, WHITE);
-          int val;
-          sc_memoryGet (i, &val);
-          printBigCell (val);
-          printDecodedCommand (val);
-          continue;
-        }
-      printCell (i, WHITE, BLACK);
-    }
-
   sc_icounterSet (0);
-
-  printAccumulator ();
-  printCounters ();
-  printCommand ();
-  printFlags ();
+  drawFrame(0);
 
   // KEYS TEXT
   mt_gotoXY (80, 20);
@@ -102,14 +84,6 @@ main (int argc, char *argv[])
   mt_gotoXY (80, 24);
   printf ("F6 - instruction counter");
 
-  drawBoxes ();
-
-  // for (int i = 0; i < 7; i++)
-  //   {
-  //     printTerm (i + 5, 1);
-  //   }
-
-  // rk_mytermsave();
   enum keys key;
 
   int columns = 10;
@@ -121,8 +95,7 @@ main (int argc, char *argv[])
   int ignoreFlag;
 
   char filenameSL[64];
-  // 0 - nothing, 1 - memory, 2 - accumulator, 3 - IC
-  // char inputState = 0;
+
   //-----------------------TEST MEM-----------------------//
   // sc_memorySet(0,0x9100);// test
 
