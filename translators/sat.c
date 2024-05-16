@@ -71,6 +71,7 @@ translation (const char *filename)
       ptr = strtok (NULL, " +");
       oper = ptr;
       address = atoi (addr);
+	// address = strtol(addr, NULL, 16);
 
       ptr = strtok (NULL, " ");
 
@@ -86,10 +87,11 @@ translation (const char *filename)
           break;
         }
       //!!!
-      operand = atoi (oper);
+    //   operand = atoi (oper);
+	  operand = strtol(oper, NULL, 16);
       char buffer[255];
-      sprintf (buffer, "%x", operand);
-      sscanf (buffer, "%x", &operand);
+      sprintf (buffer, "%d", operand);
+      sscanf (buffer, "%d", &operand);
       if ((operand == NULL
            && (strcmp (command, "HALT") < 0
                || (strcmp (oper, "0\n") != 0 && strcmp (oper, "00\n") != 0
@@ -161,7 +163,7 @@ translation (const char *filename)
         }
       else if (command[0] == '=')
         {
-          sscanf (oper, "%x", &operand);
+          sscanf (oper, "%d", &operand);
           sc_memorySet (address, operand);
           continue;
         }

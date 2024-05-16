@@ -305,7 +305,7 @@ INPUT (char *arguments)
       exit (EXIT_FAILURE);
     }
 
-  fprintf (output, "%.2i READ %d\n", assemblerCommandCounter,
+  fprintf (output, "%.2i READ %X\n", assemblerCommandCounter,
            getVariableAddress (arguments[0]));
   assemblerCommandCounter++;
 }
@@ -320,7 +320,7 @@ PRINT (char *arguments)
       exit (EXIT_FAILURE);
     }
 
-  fprintf (output, "%.2i WRITE %d\n", assemblerCommandCounter,
+  fprintf (output, "%.2i WRITE %X\n", assemblerCommandCounter,
            getVariableAddress (arguments[0]));
   assemblerCommandCounter++;
 }
@@ -337,10 +337,10 @@ parsRPN (char *rpn, char *var)
       char x = rpn[i];
       if ((x >= 'a' && x <= 'z') || x >= 'A' && x <= 'Z')
         {
-          fprintf (output, "%.2i LOAD %d\n", assemblerCommandCounter,
+          fprintf (output, "%.2i LOAD %X\n", assemblerCommandCounter,
                    getVariableAddress (x));
           assemblerCommandCounter++;
-          fprintf (output, "%.2i STORE %d\n", assemblerCommandCounter,
+          fprintf (output, "%.2i STORE %X\n", assemblerCommandCounter,
                    getVariableAddress (memoryCounter));
           memoryCounter++;
           assemblerCommandCounter++;
@@ -358,33 +358,33 @@ parsRPN (char *rpn, char *var)
             {
               operand1 = getVariableAddress (memoryCounter - 2);
               operand2 = getVariableAddress (memoryCounter - 1);
-              fprintf (output, "%.2i LOAD %d\n", assemblerCommandCounter,
+              fprintf (output, "%.2i LOAD %X\n", assemblerCommandCounter,
                        operand1); //закидываем самый правый операнд в акк
               assemblerCommandCounter++;
               switch (x)
                 {
                 case '+':
-                  fprintf (output, "%.2i ADD %d\n", assemblerCommandCounter,
+                  fprintf (output, "%.2i ADD %X\n", assemblerCommandCounter,
                            operand2);
                   assemblerCommandCounter++;
                   break;
                 case '-': // SUB
-                  fprintf (output, "%.2i SUB %d\n", assemblerCommandCounter,
+                  fprintf (output, "%.2i SUB %X\n", assemblerCommandCounter,
                            operand2);
                   assemblerCommandCounter++;
                   break;
                 case '/': // DIVIDE
-                  fprintf (output, "%.2i DIVIDE %d\n", assemblerCommandCounter,
+                  fprintf (output, "%.2i DIVIDE %X\n", assemblerCommandCounter,
                            operand2);
                   assemblerCommandCounter++;
                   break;
                 case '*': // MUL
-                  fprintf (output, "%.2i MUL %d\n", assemblerCommandCounter,
+                  fprintf (output, "%.2i MUL %X\n", assemblerCommandCounter,
                            operand2);
                   assemblerCommandCounter++;
                   break;
                 }
-              fprintf (output, "%.2i STORE %d\n", assemblerCommandCounter,
+              fprintf (output, "%.2i STORE %X\n", assemblerCommandCounter,
                        getVariableAddress (memoryCounter - 2));
               assemblerCommandCounter++;
               depth--;
@@ -398,7 +398,7 @@ parsRPN (char *rpn, char *var)
       fprintf (stderr, "Uncorrect LET statement, check your expression.\n");
       exit (EXIT_FAILURE);
     }
-  fprintf (output, "%.2i STORE %d\n", assemblerCommandCounter,
+  fprintf (output, "%.2i STORE %X\n", assemblerCommandCounter,
            getVariableAddress (var));
   assemblerCommandCounter++;
 }
@@ -410,7 +410,7 @@ GOTO (int address, int operand)
     {
       if (program[i].Number == operand)
         {
-          fprintf (output, "%.2i JUMP %d\n", address, program[i].Address);
+          fprintf (output, "%.2i JUMP %X\n", address, program[i].Address);
           return;
         }
     }
@@ -546,13 +546,13 @@ IF (char *arguments)
 
   if (logicalSign[0] == '<')
     {
-      fprintf (output, "%.2i LOAD %d\n", assemblerCommandCounter,
+      fprintf (output, "%.2i LOAD %X\n", assemblerCommandCounter,
                getVariableAddress (operand1Name));
       assemblerCommandCounter++;
-      fprintf (output, "%.2i SUB %d\n", assemblerCommandCounter,
+      fprintf (output, "%.2i SUB %X\n", assemblerCommandCounter,
                getVariableAddress (operand2Name));
       assemblerCommandCounter++;
-      fprintf (output, "%.2i JNEG %d\n", assemblerCommandCounter,
+      fprintf (output, "%.2i JNEG %X\n", assemblerCommandCounter,
                assemblerCommandCounter + 2);
       assemblerCommandCounter++;
       falsePosition = assemblerCommandCounter;
@@ -560,13 +560,13 @@ IF (char *arguments)
     }
   else if (logicalSign[0] == '>')
     {
-      fprintf (output, "%.2i LOAD %d\n", assemblerCommandCounter,
+      fprintf (output, "%.2i LOAD %X\n", assemblerCommandCounter,
                getVariableAddress (operand2Name));
       assemblerCommandCounter++;
-      fprintf (output, "%.2i SUB %d\n", assemblerCommandCounter,
+      fprintf (output, "%.2i SUB %X\n", assemblerCommandCounter,
                getVariableAddress (operand1Name));
       assemblerCommandCounter++;
-      fprintf (output, "%.2i JNEG %d\n", assemblerCommandCounter,
+      fprintf (output, "%.2i JNEG %X\n", assemblerCommandCounter,
                assemblerCommandCounter + 2);
       assemblerCommandCounter++;
       falsePosition = assemblerCommandCounter;
@@ -574,13 +574,13 @@ IF (char *arguments)
     }
   else if (logicalSign[0] == '=')
     {
-      fprintf (output, "%.2i LOAD %d\n", assemblerCommandCounter,
+      fprintf (output, "%.2i LOAD %X\n", assemblerCommandCounter,
                getVariableAddress (operand1Name));
       assemblerCommandCounter++;
-      fprintf (output, "%.2i SUB %d\n", assemblerCommandCounter,
+      fprintf (output, "%.2i SUB %X\n", assemblerCommandCounter,
                getVariableAddress (operand2Name));
       assemblerCommandCounter++;
-      fprintf (output, "%.2i JZ %d\n", assemblerCommandCounter,
+      fprintf (output, "%.2i JZ %X\n", assemblerCommandCounter,
                assemblerCommandCounter + 2);
       assemblerCommandCounter++;
       falsePosition = assemblerCommandCounter;
@@ -609,13 +609,13 @@ IF (char *arguments)
       struct command gotoCommand;
       gotoCommand.Address = assemblerCommandCounter;
       char *buff = (char *)malloc (sizeof (char) * 255);
-      sprintf (buff, "%d GOTO %s", falsePosition, commandArguments);
+      sprintf (buff, "%X GOTO %s", falsePosition, commandArguments);
       gotoCommand.Command = buff;
       gotoRecords[gotoCounter] = gotoCommand;
       assemblerCommandCounter++;
     }
 
-  fprintf (output, "%.2i JUMP %d\n", falsePosition, assemblerCommandCounter);
+  fprintf (output, "%.2i JUMP %X\n", falsePosition, assemblerCommandCounter);
   // assemblerCommandCounter++;
 }
 

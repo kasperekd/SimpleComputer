@@ -1,0 +1,7 @@
+10 REM comment
+20 INPUT A
+40 INPUT B
+50 LET C = (A + B) * B
+60 IF C < 0 GOTO 20
+70 PRINT C
+80 END
