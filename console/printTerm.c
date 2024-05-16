@@ -15,6 +15,7 @@ printTerm (int address, int input)
     }
   int value;
   sc_memoryGet (address, &value);
+  // mc_controllerread(address, &value);
 
   printf ("%02X%c +%04X", address, reg, value);
 

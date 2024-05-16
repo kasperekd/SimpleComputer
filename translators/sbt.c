@@ -77,7 +77,7 @@ intToConstant (int value)
         {
           Variables[i].Name = lastConstantName;
           lastConstantName++;
-          Variables[i].Address = 99 - i;
+          Variables[i].Address = 127 - i;
           Variables[i].Value = value;
           fprintf (output, "%.2i = %x\n", Variables[i].Address,
                    abs (Variables[i].Value));

@@ -5,7 +5,8 @@ ADD (int operand)
 {
   int a, b;
   sc_accumulatorGet (&a);
-  sc_memoryGet (operand, &b);
+  // sc_memoryGet (operand, &b);
+  mc_controllerread(operand, &b);
 
   int sign1, command1, _operand1;
   int sign2, command2, _operand2;
@@ -17,8 +18,8 @@ ADD (int operand)
   normalValue1 = (command1 << COMMAND_COMMAND_SHIFT) ^ _operand1;
   normalValue2 = (command2 << COMMAND_COMMAND_SHIFT) ^ _operand2;
 
-  int result = (sign1 == 0 ? -normalValue1 : normalValue1)
-               + (sign2 == 0 ? -normalValue2 : normalValue2);
+  int result = (sign1 == 1 ? -normalValue1 : normalValue1)
+               + (sign2 == 1 ? -normalValue2 : normalValue2);
 
   int sign_result = (result < 0) ? 1 : 0;
   int normal_result = (result < 0) ? -result : result;
@@ -37,7 +38,8 @@ SUB (int operand)
 {
   int a, b;
   sc_accumulatorGet (&a);
-  sc_memoryGet (operand, &b);
+  // sc_memoryGet (operand, &b);
+  mc_controllerread(operand, &b);
 
   int sign1, command1, _operand1;
   int sign2, command2, _operand2;
@@ -49,8 +51,8 @@ SUB (int operand)
   normalValue1 = (command1 << COMMAND_COMMAND_SHIFT) ^ _operand1;
   normalValue2 = (command2 << COMMAND_COMMAND_SHIFT) ^ _operand2;
 
-  int result = (sign1 == 0 ? -normalValue1 : normalValue1)
-               - (sign2 == 0 ? -normalValue2 : normalValue2);
+  int result = (sign1 == 1 ? -normalValue1 : normalValue1)
+               - (sign2 == 1 ? -normalValue2 : normalValue2);
 
   int sign_result = (result < 0) ? 1 : 0;
   int normal_result = (result < 0) ? -result : result;
@@ -69,8 +71,15 @@ DIVIDE (int operand)
 {
   int a, b;
   sc_accumulatorGet (&a);
-  sc_memoryGet (operand, &b);
+  // sc_memoryGet (operand, &b);
+  mc_controllerread(operand, &b);
 
+  if (b == 0)
+  {
+    sc_regSet(REG_DIVISION_BY_ZERO, 1);
+    return -1;
+  }
+  
   int sign1, command1, _operand1;
   int sign2, command2, _operand2;
   int normalValue1, normalValue2;
@@ -81,8 +90,8 @@ DIVIDE (int operand)
   normalValue1 = (command1 << COMMAND_COMMAND_SHIFT) ^ _operand1;
   normalValue2 = (command2 << COMMAND_COMMAND_SHIFT) ^ _operand2;
 
-  int result = (sign1 == 0 ? -normalValue1 : normalValue1)
-               / (sign2 == 0 ? -normalValue2 : normalValue2);
+  int result = (sign1 == 1 ? -normalValue1 : normalValue1)
+               / (sign2 == 1 ? -normalValue2 : normalValue2);
 
   int sign_result = (result < 0) ? 1 : 0;
   int normal_result = (result < 0) ? -result : result;
@@ -101,7 +110,8 @@ MUL (int operand)
 {
   int a, b;
   sc_accumulatorGet (&a);
-  sc_memoryGet (operand, &b);
+  // sc_memoryGet (operand, &b);
+  mc_controllerread(operand, &b);
 
   int sign1, command1, _operand1;
   int sign2, command2, _operand2;
@@ -113,8 +123,8 @@ MUL (int operand)
   normalValue1 = (command1 << COMMAND_COMMAND_SHIFT) ^ _operand1;
   normalValue2 = (command2 << COMMAND_COMMAND_SHIFT) ^ _operand2;
 
-  int result = (sign1 == 0 ? -normalValue1 : normalValue1)
-               * (sign2 == 0 ? -normalValue2 : normalValue2);
+  int result = (sign1 == 1 ? -normalValue1 : normalValue1)
+               * (sign2 == 1 ? -normalValue2 : normalValue2);
 
   int sign_result = (result < 0) ? 1 : 0;
   int normal_result = (result < 0) ? -result : result;
@@ -132,7 +142,8 @@ int
 NOT (int operand)
 {
   int word;
-  sc_memoryGet (operand, &word);
+  // sc_memoryGet (operand, &word);
+  mc_controllerread(operand, &word);
 
   word = ~word;
 
@@ -145,7 +156,8 @@ AND (int operand)
 {
   int accumulator, word;
   sc_accumulatorGet (&accumulator);
-  sc_memoryGet (operand, &word);
+  // sc_memoryGet (operand, &word);
+  mc_controllerread(operand, &word);
 
   int result = accumulator & word;
 
@@ -158,7 +170,8 @@ OR (int operand)
 {
   int accumulator, word;
   sc_accumulatorGet (&accumulator);
-  sc_memoryGet (operand, &word);
+  // sc_memoryGet (operand, &word);
+  mc_controllerread(operand, &word);
 
   int result = accumulator | word;
 

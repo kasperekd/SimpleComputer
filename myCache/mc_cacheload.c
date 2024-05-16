@@ -5,7 +5,7 @@ mc_cacheload (int numberLine)
 {
   int buffer[10];
   int j = 0;
-  usleep (2 * 500000);
+  usleep (2 * 500000); //TODO Не забыть выставить на 10
   for (int i = numberLine; i < numberLine + 10; i++)
     {
       if (i > 127)
