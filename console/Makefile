@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -g
 BUILD_DIR = build
-LIBS = ../mySimpleComputer/build/libmySimpleComputer.a ../myTerm/build/libmyTerm.a ../myBigChars/build/libmyBigChars.a ../myReadkey/build/libmyReadkey.a
+LIBS = ../mySimpleComputer/build/libmySimpleComputer.a ../myTerm/build/libmyTerm.a ../myBigChars/build/libmyBigChars.a ../myReadkey/build/libmyReadkey.a ../myCache/build/libmyCache.a
 INCLUDE = -I../include/
 
 SRCS = $(wildcard *.c)

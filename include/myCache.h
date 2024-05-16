@@ -2,6 +2,8 @@
 #define MY_CONTROLLER_H
 
 #include "mySimpleComputer.h"
+#include <stdio.h>
+#include <unistd.h>
 
 #define CACHE_LINE_SIZE 10
 #define CACHE_SIZE 5

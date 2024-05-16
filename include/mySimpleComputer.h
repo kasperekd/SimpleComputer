@@ -2,6 +2,7 @@
 #ifndef _MYSIMPLECOMPYTER_H_
 #define _MYSIMPLECOMPYTER_H_ 1
 
+#include "myCache.h"
 #include <stddef.h>
 
 #define MEM_SIZE 128

@@ -5,7 +5,7 @@ mc_cacheload (int numberLine)
 {
   int buffer[10];
   int j = 0;
-  sc_tcounterSet (10);
+  usleep (10 * 500000);
   for (int i = numberLine; i < numberLine + 10; i++)
     {
       sc_memoryGet (i, &buffer[j]);

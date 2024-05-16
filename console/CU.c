@@ -51,9 +51,12 @@ int
 LOAD (int operand)
 {
   int val;
-  sc_memoryGet (operand, &val);
-  drawFrame (operand);
+  mc_controllerread (operand, &val);
   sc_accumulatorSet (val);
+
+  // sc_memoryGet (operand, &val);
+  drawFrame (operand);
+  // sc_accumulatorSet (val);
   return 0;
 }
 
@@ -63,7 +66,8 @@ STORE (int operand)
   int val;
   sc_accumulatorGet (&val);
   drawFrame (operand);
-  sc_memorySet (operand, val);
+  mc_controllerwrite (operand, val);
+  // sc_memorySet (operand, val);
   return 0;
 }
 
@@ -130,17 +134,21 @@ CU ()
       return;
     }
 
-  int value = 0;
-  if (sc_memoryGet (icount, &value) < 0)
-    {
-      sc_regSet (REG_MEMORY_OUT_OF_BOUNDS, 1);
-      return;
-    }
+  int memory_get, value_c = 0;
+  mc_controllerread (icount, &value_c);
+
+  // int value = 0;
+  // if (sc_memoryGet (icount, &value) < 0)
+  //   {
+  //     sc_regSet (REG_MEMORY_OUT_OF_BOUNDS, 1);
+  //     return;
+  //   }
 
   int sign, command, operand;
-  if (sc_commandDecode (value, &sign, &command, &operand) < 0)
+  if (sc_commandDecode (value_c, &sign, &command, &operand) < 0)
     {
       sc_regSet (REG_IMPULSE_IGNORE, 1);
+      sc_regSet (REG_INVALID_COMMAND, 1);
       return;
     }
 
@@ -175,6 +183,7 @@ CU ()
           LOAD (operand);
           break;
         case 0x15:
+          // mc_controllerwrite (operand, accumulator);
           STORE (operand);
           break;
         case 0x28:

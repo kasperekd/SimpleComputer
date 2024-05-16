@@ -62,16 +62,16 @@ rk_readvalue (int *value, int timeout)
           if (sign == '-')
             {
               if (sc_commandEncode (1, command, operand, &val) < 0)
-              {
-                return -1;
-              }
+                {
+                  return -1;
+                }
             }
           else
             {
               if (sc_commandEncode (0, command, operand, &val) < 0)
-              {
-                return -1;
-              }
+                {
+                  return -1;
+                }
             }
           *value = val;
           rk_mytermrestore ();

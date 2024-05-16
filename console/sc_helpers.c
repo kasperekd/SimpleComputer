@@ -88,5 +88,6 @@ drawFrame (int cur_cell)
   printCounters ();
   printCommand ();
   printFlags ();
+  printCache ();
   drawBoxes ();
 }
