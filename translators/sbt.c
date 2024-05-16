@@ -669,15 +669,16 @@ function (char *command, char *arguments)
     }
 }
 
-int main (int argc, const char **argv)
+int
+main (int argc, const char **argv)
 {
   int keepTmp = 0;
 
   if (argc < 3)
-  {
-    fprintf (stderr, "Usage: %s input.sb output.o [keep_tmp]\n", argv[0]);
-    exit (EXIT_FAILURE);
-  }
+    {
+      fprintf (stderr, "Usage: %s input.sb output.o [keep_tmp]\n", argv[0]);
+      exit (EXIT_FAILURE);
+    }
 
   loadFile (argv[1], "tmp.sa");
 
@@ -686,27 +687,27 @@ int main (int argc, const char **argv)
   fclose (output);
 
   if (variableCount + assemblerCommandCounter > 100)
-  {
-    fprintf (stderr, "RAM overflow error!\n");
-    system ("rm -rf tmp.sa");
-  }
+    {
+      fprintf (stderr, "RAM overflow error!\n");
+      system ("rm -rf tmp.sa");
+    }
 
   char sat[255];
   sprintf (sat, "./sat tmp.sa %s\n", argv[2]);
   system (sat);
 
   if (argc >= 4)
-  {
-    if (argv[3][0] == '1')
     {
-      keepTmp = 1;
+      if (argv[3][0] == '1')
+        {
+          keepTmp = 1;
+        }
     }
-  }
 
   if (!keepTmp)
-  {
-    system ("rm -rf tmp.sa");
-  }
+    {
+      system ("rm -rf tmp.sa");
+    }
 
   return 0;
 }

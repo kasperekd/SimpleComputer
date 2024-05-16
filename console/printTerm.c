@@ -3,7 +3,7 @@
 int IO_LINE = 0;
 
 void
-printTerm (int address, int input)
+printTerm (int address, int input, int mode)
 {
   mt_gotoXY (IN_OUT_X, IN_OUT_Y + IO_LINE);
   mt_setdefaultcolor ();
@@ -14,8 +14,14 @@ printTerm (int address, int input)
       reg = '<';
     }
   int value;
-  sc_memoryGet (address, &value);
-  // mc_controllerread(address, &value);
+  if (mode == 0)
+    {
+      mc_controllerread (address, &value);
+    }
+  else
+    {
+      sc_memoryGet (address, &value);
+    }
 
   printf ("%02X%c +%04X", address, reg, value);
 

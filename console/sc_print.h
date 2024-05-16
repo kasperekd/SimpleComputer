@@ -41,7 +41,7 @@ void printFlags ();
 void printDecodedCommand (int value);
 void printAccumulator ();
 void printCounters ();
-void printTerm (int address, int input);
+void printTerm (int address, int input, int mode);
 void printCommand ();
 void printBigCell (int val);
 

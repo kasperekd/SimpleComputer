@@ -31,7 +31,7 @@ READ (int operand)
     }
 
   sc_memorySet (operand, value);
-  printTerm (operand, 0);
+  printTerm (operand, 0, 1);
 
   mt_gotoXY (1, 26);
   printf ("                                                       "
@@ -43,7 +43,7 @@ READ (int operand)
 int
 WRITE (int operand)
 {
-  printTerm (operand, 1);
+  printTerm (operand, 1, 0);
   return 0;
 }
 

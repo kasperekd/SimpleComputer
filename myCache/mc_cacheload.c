@@ -1,20 +1,22 @@
 #include "myCache.h"
+#include "mySimpleComputer.h"
 
 int
 mc_cacheload (int numberLine)
 {
   int buffer[10];
   int j = 0;
-  usleep (2 * 500000); //TODO Не забыть выставить на 10
+  sc_tcounterSet (10);
+  // usleep (2 * 500000); //TODO Не забыть выставить на 10
   for (int i = numberLine; i < numberLine + 10; i++)
     {
       if (i > 127)
-      {
-        buffer[j] = 0;
-        j++;
-        continue;
-      }
-      
+        {
+          buffer[j] = 0;
+          j++;
+          continue;
+        }
+
       sc_memoryGet (i, &buffer[j]);
       j++;
     }

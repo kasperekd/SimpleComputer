@@ -22,6 +22,17 @@ setTimer ()
 void
 IRC (int signum)
 {
+  int ic, tc;
+  sc_icounterGet (&ic);
+  sc_tcounterGet (&tc);
+  if (tc != 0)
+    {
+      sc_tcounterSet (--tc);
+      drawFrame (ic);
+      // interface (font_array);
+      return;
+    }
+
   if (signum == SIGALRM)
     {
       int ignorePre, C, M, Z, O;
@@ -33,11 +44,10 @@ IRC (int signum)
       C += M + Z + O;
 
       if (C > 0)
-      {
-        sc_regSet (REG_IMPULSE_IGNORE, 1);
-        return;
-      }
-      
+        {
+          sc_regSet (REG_IMPULSE_IGNORE, 1);
+          return;
+        }
 
       sc_regGet (REG_IMPULSE_IGNORE, &ignorePre);
       if (!ignorePre)
@@ -46,8 +56,8 @@ IRC (int signum)
           int ignoreAfter;
           sc_regGet (REG_IMPULSE_IGNORE, &ignoreAfter);
 
-          int ic;
-          sc_icounterGet (&ic);
+          // int ic;
+          // sc_icounterGet (&ic);
           if (ignorePre == ignoreAfter)
             {
               if (ic < 99 && ic >= 0)

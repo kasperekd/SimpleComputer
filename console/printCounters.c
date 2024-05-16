@@ -3,12 +3,13 @@
 void
 printCounters ()
 {
-  int icounter;
+  int icounter, tcounter;
   sc_icounterGet (&icounter);
+  sc_tcounterGet (&tcounter);
 
   mt_gotoXY (COUNT_X, COUNT_Y);
 
-  printf (" T: %02d     ", icounter);
+  printf (" T: %02d     ", tcounter);
   printf ("IC: ");
   if (icounter >= 0)
     {

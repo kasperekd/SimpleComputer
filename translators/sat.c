@@ -71,7 +71,7 @@ translation (const char *filename)
       ptr = strtok (NULL, " +");
       oper = ptr;
       address = atoi (addr);
-	// address = strtol(addr, NULL, 16);
+      // address = strtol(addr, NULL, 16);
 
       ptr = strtok (NULL, " ");
 
@@ -87,8 +87,8 @@ translation (const char *filename)
           break;
         }
       //!!!
-    //   operand = atoi (oper);
-	  operand = strtol(oper, NULL, 16);
+      //   operand = atoi (oper);
+      operand = strtol (oper, NULL, 16);
       char buffer[255];
       sprintf (buffer, "%d", operand);
       sscanf (buffer, "%d", &operand);

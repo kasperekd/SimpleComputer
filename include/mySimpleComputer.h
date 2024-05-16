@@ -16,6 +16,7 @@ extern unsigned int FLAGS;
 extern const unsigned int REG_SIZE;
 extern int ACCUMULATOR;
 extern int ICOUNTER;
+extern int tcounter;
 #endif
 
 #define REG_OVERFLOW 0x01
@@ -47,6 +48,10 @@ int sc_accumulatorGet (int *value);
 int sc_icounterInit (void);
 int sc_icounterSet (int value);
 int sc_icounterGet (int *value);
+
+int sc_tcounterInit ();
+int sc_tcounterSet (int value);
+int sc_tcounterGet (int *value);
 
 int sc_commandEncode (int sign, int command, int operand, int *value);
 int sc_commandDecode (int value, int *sign, int *command, int *operand);

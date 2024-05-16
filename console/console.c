@@ -58,6 +58,7 @@ main (int argc, char *argv[])
   sc_accumulatorInit ();
   sc_icounterInit ();
   sc_regInit ();
+  sc_tcounterInit ();
   mc_cacheInit ();
   sc_regSet (REG_IMPULSE_IGNORE, 1);
   setSignals ();
@@ -70,7 +71,7 @@ main (int argc, char *argv[])
     }
 
   sc_icounterSet (0);
-  drawFrame(0);
+  drawFrame (0);
 
   // KEYS TEXT
   mt_gotoXY (80, 20);
