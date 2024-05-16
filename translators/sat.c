@@ -88,7 +88,7 @@ void translation(const char* filename)
 		char buffer[255];
 		sprintf(buffer,"%x",operand);
 		sscanf(buffer,"%x",&operand);
-		if((operand == NULL && (!strcmp(command, "HALT") || (strcmp(oper, "0\n") != 0 && strcmp(oper, "00\n") != 0 && strcmp(oper, "000\n") != 0 && strcmp(oper, "0000\n") != 0))))
+		if((operand == NULL && (strcmp(command, "HALT") < 0 || (strcmp(oper, "0\n") != 0 && strcmp(oper, "00\n") != 0 && strcmp(oper, "000\n") != 0 && strcmp(oper, "0000\n") != 0))))
 		{
 			if ((strcmp(command,"=") != 0))
 			{
