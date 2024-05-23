@@ -56,20 +56,20 @@ IRC (int signum)
           int ignoreAfter;
           sc_regGet (REG_IMPULSE_IGNORE, &ignoreAfter);
 
-          // int ic;
-          // sc_icounterGet (&ic);
+          int _ic;
+          sc_icounterGet (&_ic);
           if (ignorePre == ignoreAfter)
             {
-              if (ic < 99 && ic >= 0)
+              if (_ic < 99 && _ic >= 0)
                 {
-                  sc_icounterSet (++ic);
+                  sc_icounterSet (++_ic);
                 }
-              else if (ic >= 99)
+              else if (_ic >= 99)
                 {
                   sc_icounterSet (0);
                 }
             }
-          drawFrame (ic);
+          drawFrame (_ic);
         }
     }
   else if (signum == SIGUSR1)
